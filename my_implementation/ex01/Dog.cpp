@@ -1,17 +1,18 @@
 #include "Dog.hpp"
+#include "AnsiColor.hpp"
 
 Dog::Dog() : Animal("Dog") {
-    std::cout << "Dog default constructor called" << std::endl;
+    std::cout << GREEN_COLOR << "Dog default constructor called           this: " << this << RESET_COLOR << std::endl;
     this->brain = new Brain();
 }
 
 Dog::Dog(const Dog &other) : Animal(other) {
-    std::cout << "Dog copy constructor called" << std::endl;
+    std::cout << GREEN_COLOR << "Dog copy constructor called              this: " << this << RESET_COLOR << std::endl;
     this->brain = new Brain(*other.brain);  // Deep copy
 }
 
 Dog &Dog::operator=(const Dog &other) {
-    std::cout << "Dog assignment operator called" << std::endl;
+    std::cout << GREEN_COLOR << "Dog assignment operator called          this: " << this << RESET_COLOR << std::endl;
     if (this != &other) {
         Animal::operator=(other);
         delete this->brain;
@@ -21,7 +22,7 @@ Dog &Dog::operator=(const Dog &other) {
 }
 
 Dog::~Dog() {
-    std::cout << "Dog destructor called" << std::endl;
+    std::cout << GREEN_COLOR << "Dog destructor called                   this: " << this << RESET_COLOR << std::endl;
     delete this->brain;
 }
 

@@ -1,19 +1,20 @@
 #include "Animal.hpp"
+#include "AnsiColor.hpp"
 
 Animal::Animal() : type("Animal") {
-    std::cout << "Animal default constructor called" << std::endl;
+    std::cout << BLUE_COLOR << "Animal default constructor called        this: " << this << RESET_COLOR << std::endl;
 }
 
 Animal::Animal(const std::string &animalType) : type(animalType) {
-    std::cout << "Animal parameterized constructor called" << std::endl;
+    std::cout << BLUE_COLOR << "Animal parameterized constructor called this: " << this << RESET_COLOR << std::endl;
 }
 
 Animal::Animal(const Animal &other) : type(other.type) {
-    std::cout << "Animal copy constructor called" << std::endl;
+    std::cout << BLUE_COLOR << "Animal copy constructor called           this: " << this << RESET_COLOR << std::endl;
 }
 
 Animal &Animal::operator=(const Animal &other) {
-    std::cout << "Animal assignment operator called" << std::endl;
+    std::cout << BLUE_COLOR << "Animal assignment operator called       this: " << this << RESET_COLOR << std::endl;
     if (this != &other) {
         this->type = other.type;
     }
@@ -21,7 +22,7 @@ Animal &Animal::operator=(const Animal &other) {
 }
 
 Animal::~Animal() {
-    std::cout << "Animal destructor called" << std::endl;
+    std::cout << BLUE_COLOR << "Animal destructor called                this: " << this << RESET_COLOR << std::endl;
 }
 
 void Animal::makeSound() const {

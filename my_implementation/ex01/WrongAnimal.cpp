@@ -1,19 +1,20 @@
 #include "WrongAnimal.hpp"
+#include "AnsiColor.hpp"
 
 WrongAnimal::WrongAnimal() : type("WrongAnimal") {
-    std::cout << "WrongAnimal default constructor called" << std::endl;
+    std::cout << RED_COLOR << "WrongAnimal default constructor called  this: " << this << RESET_COLOR << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const std::string &animalType) : type(animalType) {
-    std::cout << "WrongAnimal parameterized constructor called" << std::endl;
+    std::cout << RED_COLOR << "WrongAnimal parameterized constructor called this: " << this << RESET_COLOR << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &other) : type(other.type) {
-    std::cout << "WrongAnimal copy constructor called" << std::endl;
+    std::cout << RED_COLOR << "WrongAnimal copy constructor called     this: " << this << RESET_COLOR << std::endl;
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other) {
-    std::cout << "WrongAnimal assignment operator called" << std::endl;
+    std::cout << RED_COLOR << "WrongAnimal assignment operator called this: " << this << RESET_COLOR << std::endl;
     if (this != &other) {
         this->type = other.type;
     }
@@ -21,7 +22,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other) {
 }
 
 WrongAnimal::~WrongAnimal() {
-    std::cout << "WrongAnimal destructor called" << std::endl;
+    std::cout << RED_COLOR << "WrongAnimal destructor called           this: " << this << RESET_COLOR << std::endl;
 }
 
 void WrongAnimal::makeSound() const {

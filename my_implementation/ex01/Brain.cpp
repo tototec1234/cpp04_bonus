@@ -1,21 +1,22 @@
 #include "Brain.hpp"
+#include "AnsiColor.hpp"
 
 Brain::Brain() {
-    std::cout << "Brain default constructor called" << std::endl;
+    std::cout << CYAN_COLOR << "Brain default constructor called         this: " << this << RESET_COLOR << std::endl;
     for (int i = 0; i < IDEAS_COUNT; i++) {
         ideas[i] = "";
     }
 }
 
 Brain::Brain(const Brain &other) {
-    std::cout << "Brain copy constructor called" << std::endl;
+    std::cout << CYAN_COLOR << "Brain copy constructor called            this: " << this << RESET_COLOR << std::endl;
     for (int i = 0; i < IDEAS_COUNT; i++) {
         this->ideas[i] = other.ideas[i];
     }
 }
 
 Brain &Brain::operator=(const Brain &other) {
-    std::cout << "Brain assignment operator called" << std::endl;
+    std::cout << CYAN_COLOR << "Brain assignment operator called        this: " << this << RESET_COLOR << std::endl;
     if (this != &other) {
         for (int i = 0; i < IDEAS_COUNT; i++) {
             this->ideas[i] = other.ideas[i];
@@ -25,7 +26,7 @@ Brain &Brain::operator=(const Brain &other) {
 }
 
 Brain::~Brain() {
-    std::cout << "Brain destructor called" << std::endl;
+    std::cout << CYAN_COLOR << "Brain destructor called                 this: " << this << RESET_COLOR << std::endl;
 }
 
 void Brain::setIdea(int index, const std::string &idea) {

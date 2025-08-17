@@ -1,15 +1,16 @@
 #include "WrongCat.hpp"
+#include "AnsiColor.hpp"
 
 WrongCat::WrongCat() : WrongAnimal("WrongCat") {
-    std::cout << "WrongCat default constructor called" << std::endl;
+    std::cout << MAGENTA_COLOR << "WrongCat default constructor called     this: " << this << RESET_COLOR << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other) {
-    std::cout << "WrongCat copy constructor called" << std::endl;
+    std::cout << MAGENTA_COLOR << "WrongCat copy constructor called        this: " << this << RESET_COLOR << std::endl;
 }
 
 WrongCat &WrongCat::operator=(const WrongCat &other) {
-    std::cout << "WrongCat assignment operator called" << std::endl;
+    std::cout << MAGENTA_COLOR << "WrongCat assignment operator called    this: " << this << RESET_COLOR << std::endl;
     if (this != &other) {
         WrongAnimal::operator=(other);
     }
@@ -17,7 +18,7 @@ WrongCat &WrongCat::operator=(const WrongCat &other) {
 }
 
 WrongCat::~WrongCat() {
-    std::cout << "WrongCat destructor called" << std::endl;
+    std::cout << MAGENTA_COLOR << "WrongCat destructor called             this: " << this << RESET_COLOR << std::endl;
 }
 
 void WrongCat::makeSound() const {

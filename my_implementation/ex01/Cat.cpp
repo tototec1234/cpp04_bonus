@@ -1,25 +1,35 @@
 #include "Cat.hpp"
+#include "AnsiColor.hpp"
 
 Cat::Cat() : Animal("Cat") {
-    std::cout << "Cat default constructor called" << std::endl;
+    std::cout << YELLOW_COLOR << "Cat default constructor called           this: " << this << RESET_COLOR << std::endl;
+    this->brain = new Brain();
 }
 
 Cat::Cat(const Cat &other) : Animal(other) {
-    std::cout << "Cat copy constructor called" << std::endl;
+    std::cout << YELLOW_COLOR << "Cat copy constructor called              this: " << this << RESET_COLOR << std::endl;
+    this->brain = new Brain(*other.brain);  // Deep copy
 }
 
 Cat &Cat::operator=(const Cat &other) {
-    std::cout << "Cat assignment operator called" << std::endl;
+    std::cout << YELLOW_COLOR << "Cat assignment operator called          this: " << this << RESET_COLOR << std::endl;
     if (this != &other) {
         Animal::operator=(other);
+        delete this->brain;
+        this->brain = new Brain(*other.brain);  // Deep copy
     }
     return *this;
 }
 
 Cat::~Cat() {
-    std::cout << "Cat destructor called" << std::endl;
+    std::cout << YELLOW_COLOR << "Cat destructor called                   this: " << this << RESET_COLOR << std::endl;
+    delete this->brain;
 }
 
 void Cat::makeSound() const {
     std::cout << "Meow! Meow!" << std::endl;
+}
+
+Brain* Cat::getBrain() const {
+    return this->brain;
 }
