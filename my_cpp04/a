@@ -1,0 +1,15 @@
+import os
+
+def convert_indent_to_tab(root_dir):
+    for folder in ['ex00', 'ex01', 'ex02']:
+        dir_path = os.path.join(root_dir, folder)
+        for file in os.listdir(dir_path):
+            if file.endswith('.cpp') or file.endswith('.hpp'):
+                file_path = os.path.join(dir_path, file)
+                with open(file_path, 'r') as f:
+                    lines = f.readlines()
+                new_lines = [line.replace('    ', '\t') for line in lines]
+                with open(file_path, 'w') as f:
+                    f.writelines(new_lines)
+
+convert_indent_to_tab('/Users/toruinoue/CPP/0817cpp04/my_cpp04')

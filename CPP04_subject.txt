@@ -162,4 +162,3 @@ Creating Animal objects doesn’t make sense after all. It’s true, they make n
 To avoid any possible mistakes, the default Animal class should not be instantiable.
 Fix the Animal class so that nobody can instantiate it. Everything should work as before.
 If you want to, you can update the class name by adding an A prefix to Animal.
-12
