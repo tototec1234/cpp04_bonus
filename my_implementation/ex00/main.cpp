@@ -8,6 +8,40 @@ void testCorrectPolymorphism();
 void testWrongPolymorphism();
 void testVirtualDestructorImportance();
 
+
+int main() {
+    while (true) {
+        std::cout << "\033[33m=== Animal Test Menu ===\033[0m" << std::endl;
+        std::cout << "1: Test Correct Polymorphism" << std::endl;
+        std::cout << "2: Test Wrong Polymorphism" << std::endl;
+        std::cout << "3: Demonstrate Virtual Destructor Importance" << std::endl;
+        std::cout << "0: Exit" << std::endl;
+        std::cout << "Choose an option: ";
+
+        int choice;
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1:
+                testCorrectPolymorphism();
+                break;
+            case 2:
+                testWrongPolymorphism();
+                break;
+            case 3:
+                testVirtualDestructorImportance();
+                break;
+            case 0:
+                std::cout << "Exiting program" << std::endl;
+                return 0;
+            default:
+                std::cout << "Invalid option" << std::endl;
+        }
+    }
+    return 0;
+}
+
+
 void testCorrectPolymorphism() {
     std::cout << "\033[32m=== Testing Correct Polymorphism ===\033[0m" << std::endl;
     
@@ -73,7 +107,7 @@ void testWrongPolymorphism() {
     delete wrongCat;
     std::cout << std::endl;
 
-	std::cout << "\n=== Testing Stack Objects ===\n" << std::endl;
+    std::cout << "\n=== Testing Stack Objects ===\n" << std::endl;
     
     WrongAnimal stackWrongAnimal;
     std::cout << std::endl;
@@ -92,13 +126,13 @@ void testVirtualDestructorImportance() {
     
     std::cout << "\n----- 正しい多態性での破棄 (virtualデストラクタあり) -----" << std::endl;
     {
-        const Animal* correctωnimal = new Cat();
+        const Animal* correctAnimal = new Cat();
         std::cout << "Type: " << correctAnimal->getType() << std::endl;
         correctAnimal->makeSound();
         std::cout << "\n破棄時: virtualデストラクタにより適切な順序で呼ばれます" << std::endl;
         delete correctAnimal;  // Cat → Animal の順で適切に破棄される
         std::cout << std::endl;
-		std::cout << std::endl;
+        std::cout << std::endl;
 
     }
     
@@ -119,36 +153,3 @@ void testVirtualDestructorImportance() {
     std::cout << "• virtualキーワードは「実質的な」機能を提供し、適切な多態性を実現します" << std::endl;
     std::cout << std::endl;
 }
-
-int main() {
-    while (true) {
-        std::cout << "\033[33m=== Animal Test Menu ===\033[0m" << std::endl;
-        std::cout << "1: Test Correct Polymorphism" << std::endl;
-        std::cout << "2: Test Wrong Polymorphism" << std::endl;
-        std::cout << "3: Demonstrate Virtual Destructor Importance" << std::endl;
-        std::cout << "0: Exit" << std::endl;
-        std::cout << "Choose an option: ";
-
-        int choiceω
-        std::cin >> choice;
-
-        switch (choice) {
-            case 1:
-                testCorrectPolymorphism();
-                break;
-            case 2:
-                testWrongPolymorphism();
-                break;
-            case 3:
-                testVirtualDestructorImportance();
-                break;
-            case 0:
-                std::cout << "Exiting program" << std::endl;
-                return 0;
-            default:
-                std::cout << "Invalid option" << std::endl;
-        }
-    }
-    return 0;
-}
-

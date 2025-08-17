@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 00:00:00 by toruinoue         #+#    #+#             */
-/*   Updated: 2025/08/17 16:25:47 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/17 16:38:06 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,6 +263,10 @@ void testAbstractClass() {
     std::cout << "・直接インスタンス化できない" << std::endl;
     std::cout << "・派生クラスは純粋仮想関数を実装する必要がある" << std::endl;
     
+    std::cout << "\n----- 抽象クラス vs 普通のクラスの比較 -----" << std::endl;
+    std::cout << "Animal（抽象クラス）: インスタンス化不可" << std::endl;
+    std::cout << "WrongAnimal（普通のクラス）: インスタンス化可能" << std::endl;
+    
     std::cout << "\n----- コンパイルエラーになるコード例 -----" << std::endl;
     std::cout << "以下のコードのコメントアウトを外すとコンパイルエラー:" << std::endl;
     std::cout << "  // Animal animal;          // Error: cannot instantiate abstract class" << std::endl;
@@ -279,6 +283,14 @@ void testAbstractClass() {
     Animal* animalPtr = new Animal(); // エラー: 抽象クラスはnewできない
     delete animalPtr;
     */
+    
+    std::cout << "\n----- WrongAnimalとの違い: 普通のクラスの動作確認 -----" << std::endl;
+    std::cout << "WrongAnimal wrongAnimal;  // ✅ OK: 普通のクラスはインスタンス化可能" << std::endl;
+    // WrongAnimal wrongAnimal;  // コメントアウト（実際の宣言は避ける）
+    std::cout << "WrongAnimal* wrongPtr = new WrongAnimal();  // ✅ OK" << std::endl;
+    // WrongAnimal* wrongPtr = new WrongAnimal(); 
+    // delete wrongPtr;
+    std::cout << "→ WrongAnimalは普通のクラスなので直接インスタンス化可能" << std::endl;
     
     std::cout << "\n----- 正常動作: 派生クラス経由でのアクセス -----" << std::endl;
     std::cout << "Animal*ポインタとして派生クラスを扱うことは可能:" << std::endl;
@@ -302,6 +314,10 @@ void testAbstractClass() {
     std::cout << "・多態性は維持（Animal*としてDog/Catを扱い可能）" << std::endl;
     std::cout << "・派生クラスでのmakeSound()実装を強制" << std::endl;
     std::cout << "・設計意図の明確化（\"動物は具体的でなければならない\"）" << std::endl;
+    std::cout << "\n⚖️ Animalクラス vs WrongAnimalクラス:" << std::endl;
+    std::cout << "・Animal: 抽象クラス → インスタンス化不可" << std::endl;
+    std::cout << "・WrongAnimal: 普通のクラス → インスタンス化可能" << std::endl;
+    std::cout << "・ex02では意図的に抽象化によりAnimal直接生成を禁止" << std::endl;
 }
 
 void testVirtualDestructorWithBrain() {

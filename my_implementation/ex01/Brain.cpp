@@ -46,7 +46,7 @@ void Brain::printIdeas() const {
     std::cout << "Brain ideas:" << std::endl;
     for (int i = 0; i < 5; i++) {  // Print first 5 ideas
         if (!ideas[i].empty()) {
-            std::cout << "  [" << i << "]: " << ideas[i] << std::endl;
+            std::cout << "  [" << i << ":" << &ideas[i] << "]: " << ideas[i] << std::endl;
         }
     }
 }

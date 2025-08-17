@@ -6,6 +6,48 @@ void testBasicFunctionality();
 void testDeepCopy();
 void testAssignmentOperator();
 void testVirtualDestructorWithBrain();
+int main() {
+    int choice;
+    bool running = true;
+
+    while (running) {
+        std::cout << "\n=== CPP04 Exercise 01 Test Menu ===" << std::endl;
+        std::cout << "=== CPP04 演習01 テストメニュー ===" << std::endl;
+        std::cout << "1: Basic Animal Array Functionality Test                    基本的な動物配列機能テスト" << std::endl;
+        std::cout << "2: Deep Copy Test                                          ディープコピーテスト" << std::endl;
+        std::cout << "3: Assignment Operator Test                                代入演算子テスト" << std::endl;
+        std::cout << "4: Virtual Destructor Importance Test                      仮想デストラクタの重要性テスト" << std::endl;
+        std::cout << "0: Exit                                                    終了" << std::endl;
+        std::cout << "Please select an option / 選択してください: ";
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1:
+                testBasicFunctionality();
+                break;
+            case 2:
+                testDeepCopy();
+                break;
+            case 3:
+                testAssignmentOperator();
+                break;
+            case 4:
+                testVirtualDestructorWithBrain();
+                break;
+            case 0:
+                running = false;
+                break;
+            default:
+                std::cout << "Invalid selection. Please try again. / 無効な選択です。もう一度試してください。" << std::endl;
+        }
+    }
+
+    return 0;
+}
+
+
+
+
 
 void testBasicFunctionality() {
     std::cout << "\033[32m=== Testing Basic Animal Array Functionality ===\033[0m" << std::endl;
@@ -105,36 +147,87 @@ void testDeepCopy() {
 void testAssignmentOperator() {
     std::cout << "\033[32m=== Testing Deep Copy (Assignment Operator) ===\033[0m" << std::endl;
     
-    Dog dog1;
-    Dog dog2;
+    std::cout << "\n----- Testing Dog Assignment Operator -----" << std::endl;
+    {
+        Dog dog1;
+        Dog dog2;
+        
+        dog1.getBrain()->setIdea(0, "Original dog idea");
+        dog1.getBrain()->setIdea(1, "Another original idea");
+        
+        dog2.getBrain()->setIdea(0, "Different dog idea");
+        
+        std::cout << "\nBefore assignment:" << std::endl;
+        std::cout << "Dog1 brain address: " << dog1.getBrain() << std::endl;
+        std::cout << "Dog1 ideas:" << std::endl;
+        dog1.getBrain()->printIdeas();
+        
+        std::cout << "\nDog2 brain address: " << dog2.getBrain() << std::endl;
+        std::cout << "Dog2 ideas:" << std::endl;
+        dog2.getBrain()->printIdeas();
+        
+        std::cout << "\n--- Performing assignment (dog2 = dog1) ---" << std::endl;
+        dog2 = dog1;  // Assignment operator
+        
+        std::cout << "\nAfter assignment:" << std::endl;
+        std::cout << "Dog1 brain address: " << dog1.getBrain() << std::endl;
+        std::cout << "Dog2 brain address: " << dog2.getBrain() << std::endl;
+        std::cout << "Dog2 ideas (should be same content, different address):" << std::endl;
+        dog2.getBrain()->printIdeas();
+        
+        std::cout << "\n--- Verifying independent modification ---" << std::endl;
+        dog1.getBrain()->setIdea(0, "Modified after assignment");
+        
+        std::cout << "\nAfter modifying dog1:" << std::endl;
+        std::cout << "Dog1 ideas (modified):" << std::endl;
+        dog1.getBrain()->printIdeas();
+        
+        std::cout << "Dog2 ideas (should be unchanged - proof of deep copy):" << std::endl;
+        dog2.getBrain()->printIdeas();
+        
+        std::cout << "\n✅ Dog assignment operator deep copy verified" << std::endl;
+    }
     
-    dog1.getBrain()->setIdea(0, "Original dog idea");
-    dog1.getBrain()->setIdea(1, "Another original idea");
-    
-    dog2.getBrain()->setIdea(0, "Different dog idea");
-    
-    std::cout << "\nBefore assignment:" << std::endl;
-    std::cout << "Dog1 brain address: " << dog1.getBrain() << std::endl;
-    std::cout << "Dog1 idea[0]: " << dog1.getBrain()->getIdea(0) << std::endl;
-    std::cout << "Dog2 brain address: " << dog2.getBrain() << std::endl;
-    std::cout << "Dog2 idea[0]: " << dog2.getBrain()->getIdea(0) << std::endl;
-    
-    std::cout << "\n--- Performing assignment (dog2 = dog1) ---" << std::endl;
-    dog2 = dog1;  // Assignment operator
-    
-    std::cout << "\nAfter assignment:" << std::endl;
-    std::cout << "Dog1 brain address: " << dog1.getBrain() << std::endl;
-    std::cout << "Dog1 idea[0]: " << dog1.getBrain()->getIdea(0) << std::endl;
-    std::cout << "Dog2 brain address: " << dog2.getBrain() << std::endl;
-    std::cout << "Dog2 idea[0]: " << dog2.getBrain()->getIdea(0) << std::endl;
-    
-    std::cout << "\n--- Verifying independent modification ---" << std::endl;
-    dog1.getBrain()->setIdea(0, "Modified after assignment");
-    
-    std::cout << "Dog1 idea[0]: " << dog1.getBrain()->getIdea(0) << std::endl;
-    std::cout << "Dog2 idea[0]: " << dog2.getBrain()->getIdea(0) << " (should be unchanged)" << std::endl;
-    
-    std::cout << "\n✅ Assignment operator deep copy verified" << std::endl;
+    std::cout << "\n----- Testing Cat Assignment Operator -----" << std::endl;
+    {
+        Cat cat1;
+        Cat cat2;
+        
+        cat1.getBrain()->setIdea(0, "Original cat idea");
+        cat1.getBrain()->setIdea(1, "Sleep in sunny spot");
+        
+        cat2.getBrain()->setIdea(0, "Different cat idea");
+        
+        std::cout << "\nBefore assignment:" << std::endl;
+        std::cout << "Cat1 brain address: " << cat1.getBrain() << std::endl;
+        std::cout << "Cat1 ideas:" << std::endl;
+        cat1.getBrain()->printIdeas();
+        
+        std::cout << "\nCat2 brain address: " << cat2.getBrain() << std::endl;
+        std::cout << "Cat2 ideas:" << std::endl;
+        cat2.getBrain()->printIdeas();
+        
+        std::cout << "\n--- Performing assignment (cat2 = cat1) ---" << std::endl;
+        cat2 = cat1;  // Assignment operator
+        
+        std::cout << "\nAfter assignment:" << std::endl;
+        std::cout << "Cat1 brain address: " << cat1.getBrain() << std::endl;
+        std::cout << "Cat2 brain address: " << cat2.getBrain() << std::endl;
+        std::cout << "Cat2 ideas (should be same content, different address):" << std::endl;
+        cat2.getBrain()->printIdeas();
+        
+        std::cout << "\n--- Verifying independent modification ---" << std::endl;
+        cat1.getBrain()->setIdea(0, "Modified cat thought");
+        
+        std::cout << "\nAfter modifying cat1:" << std::endl;
+        std::cout << "Cat1 ideas (modified):" << std::endl;
+        cat1.getBrain()->printIdeas();
+        
+        std::cout << "Cat2 ideas (should be unchanged - proof of deep copy):" << std::endl;
+        cat2.getBrain()->printIdeas();
+        
+        std::cout << "\n✅ Cat assignment operator deep copy verified" << std::endl;
+    }
 }
 
 void testVirtualDestructorWithBrain() {
@@ -159,40 +252,4 @@ void testVirtualDestructorWithBrain() {
     std::cout << "・virtualデストラクタ: 適切な多態性での破棄" << std::endl;
     std::cout << "・深いコピー: 独立したBrainオブジェクトの管理" << std::endl;
     std::cout << "・リソース管理: new/deleteのペア、RAII原則" << std::endl;
-}
-
-int main() {
-    while (true) {
-        std::cout << "\n\033[33m=== CPP04 Exercise 01 Test Menu ===\033[0m" << std::endl;
-        std::cout << "1: Test Basic Animal Array Functionality" << std::endl;
-        std::cout << "2: Test Deep Copy (Copy Constructor)" << std::endl;
-        std::cout << "3: Test Deep Copy (Assignment Operator)" << std::endl;
-        std::cout << "4: Demonstrate Virtual Destructor Importance" << std::endl;
-        std::cout << "0: Exit" << std::endl;
-        std::cout << "Choose an option: ";
-
-        int choice;
-        std::cin >> choice;
-
-        switch (choice) {
-            case 1:
-                testBasicFunctionality();
-                break;
-            case 2:
-                testDeepCopy();
-                break;
-            case 3:
-                testAssignmentOperator();
-                break;
-            case 4:
-                testVirtualDestructorWithBrain();
-                break;
-            case 0:
-                std::cout << "Exiting program" << std::endl;
-                return 0;
-            default:
-                std::cout << "Invalid option" << std::endl;
-        }
-    }
-    return 0;
 }

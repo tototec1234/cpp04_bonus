@@ -1,29 +1,38 @@
 NAME = polymorphism
-
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCDIR = .
-OBJDIR = obj
+SRCS = 	main.cpp \
+	Animal.cpp \
+	Dog.cpp \
+	Cat.cpp \
+	WrongAnimal.cpp \
+	WrongCat.cpp \
 
-SOURCES = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
-OBJECTS = $(SOURCES:%.cpp=$(OBJDIR)/%.o)
+MAKE = make
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	@mkdir -p $(OBJDIR)
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJDIR)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: test
+
+test: re
+	@echo "Running tests..."
+	./$(NAME)
+	$(MAKE) fclean
+
+.PHONY: all clean fclean re test run
