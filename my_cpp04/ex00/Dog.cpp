@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/17 17:27:06 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/19 17:30:20 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ Dog &Dog::operator=(const Dog &other) {
 	return *this;
 }
 
-// 注意: 派生クラスデストラクタは基底クラスより先に実行されるため、typeメンバはまだ有効
 Dog::~Dog() {
 	std::cout << GREEN_COLOR << "Dog destructor called" << RESET_COLOR << std::endl;
-	std::cout << "派生クラスデストラクタは基底クラスより先に実行されるため、typeメンバはまだ有効" << std::endl;
 	std::cout << "type: " << type << ", this: " << this << std::endl;
 }
 

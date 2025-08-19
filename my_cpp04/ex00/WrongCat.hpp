@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/17 17:20:30 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/19 16:59:00 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
 	WrongCat &operator=(const WrongCat &other);
 	~WrongCat();
 
-	void makeSound() const;  // NOT virtual!
+	void makeSound() const;
 };
 
 #endif

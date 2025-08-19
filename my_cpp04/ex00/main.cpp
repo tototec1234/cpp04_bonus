@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/17 17:27:06 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/19 21:33:56 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void testVirtualDestructorImportance();
 
 int main() {
 	while (true) {
-	    std::cout << YELLOW_COLOR << "=== Animal Test Menu ===" << RESET_COLOR << std::endl;
+	    std::cout << YELLOW_COLOR << "\n\n=== Animal Test Menu ===" << RESET_COLOR << std::endl;
 	    std::cout << "1: Test Correct Polymorphism" << std::endl;
 	    std::cout << "2: Test Wrong Polymorphism" << std::endl;
 	    std::cout << "3: Demonstrate Virtual Destructor Importance" << std::endl;
@@ -60,80 +60,70 @@ void testCorrectPolymorphism() {
 
 	const Animal* meta = new Animal();
 	std::cout << std::endl;
-	const Animal* dog = new Dog();
+	const Animal* j = new Dog();
 	std::cout << std::endl;
-	const Animal* cat = new Cat();
-	std::cout << std::endl;
+	const Animal* i = new Cat();
 
-	std::cout << dog->getType() << " " << std::endl;
-	std::cout << cat->getType() << " " << std::endl;
+	std::cout << j->getType() << " " << std::endl;
+	std::cout << i->getType() << " " << std::endl;
 
 	std::cout << "\n----- Sounds (should be specific to each animal) -----" << std::endl;
-	cat->makeSound();
-	dog->makeSound();
 	meta->makeSound();
+	i->makeSound();
+	j->makeSound();
 
 	std::cout << "\n----- Destroying animals -----" << std::endl;
 	delete meta;
 	std::cout << std::endl;
-	delete dog;
+	delete j;
 	std::cout << std::endl;
-	delete cat;
-	std::cout << std::endl;
-
-	std::cout << "\n=== Testing Stack Objects ===\n" << std::endl;
-
-	Animal stackAnimal;
-	std::cout << std::endl;
-	Dog stackDog;
-	std::cout << std::endl;
-	Cat stackCat;
+	delete i;
 	std::cout << std::endl;
 
-	std::cout << "\n----- Stack object sounds -----" << std::endl;
-	stackAnimal.makeSound();
-	stackDog.makeSound();
-	stackCat.makeSound();
+	std::cout << "\n=== Testing Copy ===" << std::endl;
+	
+	// std::cout << "\n=== Testing Stack Objects ===\n" << std::endl;
+
+	// Cat stackCat;
+	// std::cout << std::endl;
+
+	// std::cout << "\n----- Stack object sounds -----" << std::endl;
+	// stackCat.makeSound();
 }
 
 void testWrongPolymorphism() {
-	std::cout << RED_COLOR << "=== Testing Wrong Polymorphism ===" << RESET_COLOR << std::endl;
+	std::cout << MAGENTA_COLOR << "=== Testing Wrong Polymorphism ===" << RESET_COLOR << std::endl;
 
-	const WrongAnimal* wrongMeta = new WrongAnimal();
-	std::cout << std::endl;
+	// const WrongAnimal* wrongCat = new WrongCat();
 	const WrongAnimal* wrongCat = new WrongCat();
 	std::cout << std::endl;
 
-
-	std::cout << "\n----- Types -----" << std::endl;
-	std::cout << wrongMeta->getType() << " " << std::endl;
 	std::cout << wrongCat->getType() << " " << std::endl;
+	
 	std::cout << std::endl;
 
 	std::cout << "\n----- Wrong sounds (should both be WrongAnimal sound) -----" << std::endl;
-	wrongMeta->makeSound();
+		std::cout << std::endl;
+
 	wrongCat->makeSound();
+		std::cout << std::endl;
 
 	std::cout << "\n----- Destroying wrong animals -----" << std::endl;
-	delete wrongMeta;
-	std::cout << std::endl;
 	delete wrongCat;
 	std::cout << std::endl;
 
 	std::cout << "\n=== Testing Stack Objects ===\n" << std::endl;
-
-	WrongAnimal stackWrongAnimal;
-	std::cout << std::endl;
-	WrongCat stackWrongCat;
+	// WrongCat stackWrongCat;
+	WrongAnimal stackWrongCat = WrongCat();
+	
 	std::cout << std::endl;
 
 	std::cout << "\n----- Stack object sounds -----" << std::endl;
-	stackWrongAnimal.makeSound();
 	stackWrongCat.makeSound();
 }
 
 void testVirtualDestructorImportance() {
-	std::cout << RED_COLOR << "=== Demonstrating Virtual Destructor Importance ===" << RESET_COLOR << std::endl;
+	std::cout << MAGENTA_COLOR << "=== Demonstrating Virtual Destructor Importance ===" << RESET_COLOR << std::endl;
 	std::cout << YELLOW_COLOR << "注意: この例では非virtualデストラクタによる問題を明確に示します" << RESET_COLOR << std::endl;
 	std::cout << std::endl;
 
@@ -159,7 +149,7 @@ void testVirtualDestructorImportance() {
 	    std::cout << std::endl;
 	}
 
-	std::cout << RED_COLOR << "=== 問題の説明 ===" << RESET_COLOR << std::endl;
+	std::cout << MAGENTA_COLOR << "=== 問題の説明 ===" << RESET_COLOR << std::endl;
 	std::cout << "• virtualデストラクタがない場合、基底クラスポインタ経由での削除時に" << std::endl;
 	std::cout << "  派生クラスのデストラクタが呼ばれません" << std::endl;
 	std::cout << "• これによりメモリリークやリソースリークが発生する可能性があります" << std::endl;

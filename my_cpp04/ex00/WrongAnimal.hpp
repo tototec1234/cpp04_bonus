@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/17 17:20:07 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/19 16:55:58 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 	WrongAnimal &operator=(const WrongAnimal &other);
 	~WrongAnimal();
 
-	void makeSound() const;  // NOT virtual!
+	void makeSound() const;
 	std::string getType() const;
 };
 
