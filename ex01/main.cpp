@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 18:19:05 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/21 00:00:52 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int main() {
 		std::cout << "2: Deep Copy Test                                     ディープコピーテスト" << std::endl;
 		std::cout << "3: Virtual欠如問題の実証                              Virtual polymorphism failure" << std::endl;
 		std::cout << "4: 浅いコピー問題の実証 (WrongDog)                    Shallow copy problem" << std::endl;
-		std::cout << "5: Wrong系浅いコピー詳細実証                          Wrong shallow copy detailed" << std::endl;
+		// std::cout << "5: Wrong系浅いコピー詳細実証                          Wrong shallow copy detailed" << std::endl;	// 旧メニュー
+		std::cout << "5: Wrong系包括的設計欠陥実証                          Wrong comprehensive design flaws" << std::endl;	// 新メニュー：包括的実証
 		std::cout << "6: Assignment Operator Test                           代入演算子テスト" << std::endl;
 		std::cout << "7: Exception Handling Test                            例外処理テスト" << std::endl;
 		std::cout << "0: Exit                                               終了" << std::endl;
@@ -54,7 +55,8 @@ int main() {
 					testShallowCopyProblem();
 					break;
 				case 5:
-					testWrongShallowCopy();
+					// testWrongShallowCopy();	// 旧関数：統合により廃止
+					testWrongComprehensiveDemo();	// 新関数：包括的設計欠陥実証
 					break;
 				case 6:
 					testAssignmentOperator();
