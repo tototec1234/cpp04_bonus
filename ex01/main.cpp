@@ -20,11 +20,11 @@ int main() {
 	bool running = true;
 
 	while (running) {
-		std::cout << YELLOW_COLOR << "\n=== CPP04 Ex01: 実験計画法的テスト ===" << RESET_COLOR << std::endl;
+		std::cout << YELLOW_COLOR << "\n=== CPP04 Exercise 01: I don’t want to set the world on fire. ===" << RESET_COLOR << std::endl;
 		
-		std::cout << "1: Subject Required Basic Test                         課題書要求の基本テスト" << std::endl;
+		std::cout << "1: Subject Required Basic Test                        課題書要求の基本テスト" << std::endl;
 		std::cout << "2: Deep Copy Test                                     ディープコピーテスト" << std::endl;
-		std::cout << "3: Virtual不足問題の実証                              Virtual polymorphism failure" << std::endl;
+		std::cout << "3: Virtual欠如問題の実証                              Virtual polymorphism failure" << std::endl;
 		std::cout << "4: 浅いコピー問題の実証 (WrongDog)                    Shallow copy problem" << std::endl;
 		std::cout << "5: Wrong系浅いコピー詳細実証                          Wrong shallow copy detailed" << std::endl;
 		std::cout << "6: Assignment Operator Test                           代入演算子テスト" << std::endl;
@@ -78,4 +78,7 @@ int main() {
 
 /*
 valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./brain_test
+
+valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./brain_test > VALGLIND.log 2>&1
+
 */

@@ -1,0 +1,164 @@
+==1865674== Memcheck, a memory error detector
+==1865674== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1865674== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1865674== Command: ./brain_test
+==1865674== 
+[33m
+=== CPP04 Exercise 01: I don’t want to set the world on fire. ===[0m
+1: Subject Required Basic Test                        課題書要求の基本テスト
+2: Deep Copy Test                                     ディープコピーテスト
+3: Virtual欠如問題の実証                              Virtual polymorphism failure
+4: 浅いコピー問題の実証 (WrongDog)                    Shallow copy problem
+5: Wrong系浅いコピー詳細実証                          Wrong shallow copy detailed
+6: Assignment Operator Test                           代入演算子テスト
+7: Exception Handling Test                            例外処理テスト
+0: Exit                                               終了
+選択してください: [31m=== 4: 浅いコピー問題の実証 (WrongDog) ===[0m
+WrongDogは意図的に浅いコピー実装になっています！
+
+----- ✅ 正常なDeep Copy (Cat) -----
+[1;32mExecuting: Cat cat1;[0m
+[34mAnimal parameterized constructor called[0m
+type: Cat, this: 0x1ffefffae0
+[33mCat default constructor called           this: 0x1ffefffae0[0m
+[36mBrain default constructor called         this: 0x4de5100[0m
+
+[1;32mExecuting: cat1.getBrain()->setIdea(0, "Original cat idea");[0m
+
+Cat1 brain address: 0x4de5100
+
+[1;32mExecuting: Cat cat2(cat1);  // Deep copy[0m
+[34mAnimal copy constructor called[0m
+type: Cat, this: 0x1ffefffa78
+[33mCat copy constructor called              this: 0x1ffefffa78[0m
+[36mBrain copy constructor called            this: 0x4de5e80[0m
+
+Cat2 brain address: 0x4de5e80
+✅ Deep copy: 異なるBrainオブジェクト
+
+[1;32mExecuting: cat2.getBrain()->setIdea(0, "Modified by cat2");[0m
+Cat1 idea[0]: "Original cat idea"
+Cat2 idea[0]: "Modified by cat2"
+✅ 独立したBrain：お互いに影響なし
+
+
+[33mCat destructor called                   this: 0x1ffefffa78[0m
+[36mBrain destructor called                 this: 0x4de5e80[0m
+[34mAnimal destructor called[0m
+type: Cat, this: 0x1ffefffa78
+[33mCat destructor called                   this: 0x1ffefffae0[0m
+[36mBrain destructor called                 this: 0x4de5100[0m
+[34mAnimal destructor called[0m
+type: Cat, this: 0x1ffefffae0
+
+----- 🔴 問題のあるShallow Copy (WrongDog) -----
+[1;32mExecuting: WrongDog dog1;[0m
+[35mWrongAnimal parameterized constructor called this: 0x1ffefff9e8[0m
+[36mWrongDog default constructor called     this: 0x1ffefff9e8[0m
+[31mWrongBrain default constructor called   this: 0x4de6cc0[0m
+
+[1;32mExecuting: dog1.getBrain().setIdea(0, "Original dog idea");[0m
+
+WrongDog1 brain address: 0x4de6cc0
+
+[1;32mExecuting: WrongDog dog2(dog1);  // CAUTION Shallow copy![0m
+[35mWrongAnimal copy constructor called     this: 0x1ffefff998[0m
+[36mWrongDog copy constructor called        this: 0x1ffefff998[0m
+[36m  ⚠️  SHALLOW COPY: brain pointer copied from 0x4de6cc0[0m
+
+WrongDog2 brain address: 0x4de6cc0
+❌ Shallow copy: 同じBrainオブジェクトを共有！
+
+[1;32mExecuting: dog2.getBrain().setIdea(0, "Modified by dog2");[0m
+WrongDog1 idea[0]: "Modified by dog2"
+WrongDog2 idea[0]: "Modified by dog2"
+❌ 危険：dog1のideaもdog2によって変更された！
+
+🚨 この後、スコープを出るときにdouble deleteが発生する可能性があります...
+dog1とdog2の両方が同じbrainポインタを削除しようとします！
+
+[36mWrongDog destructor called             this: 0x1ffefff998[0m
+[31mWrongBrain destructor called            this: 0x4de6cc0[0m
+[35mWrongAnimal destructor called           this: 0x1ffefff998[0m
+[36mWrongDog destructor called             this: 0x1ffefff9e8[0m
+[31mWrongBrain destructor called            this: 0x4de6cc0[0m
+==1865674== Invalid read of size 8
+==1865674==    at 0x49BD474: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==1865674==    by 0x40D71D: WrongBrain::~WrongBrain() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x40D11D: WrongDog::~WrongDog() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x406557: testShallowCopyProblem() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x402C4E: main (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==  Address 0x4de7920 is 3,168 bytes inside a block of size 3,200 free'd
+==1865674==    at 0x484B8AF: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865674==    by 0x40D12B: WrongDog::~WrongDog() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x406546: testShallowCopyProblem() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x402C4E: main (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==  Block was alloc'd at
+==1865674==    at 0x4849013: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865674==    by 0x40CD1C: WrongDog::WrongDog() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x405DAF: testShallowCopyProblem() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x402C4E: main (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674== 
+==1865674== Invalid free() / delete / delete[] / realloc()
+==1865674==    at 0x484B8AF: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865674==    by 0x40D71D: WrongBrain::~WrongBrain() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x40D11D: WrongDog::~WrongDog() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x406557: testShallowCopyProblem() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x402C4E: main (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==  Address 0x4de79e0 is 0 bytes inside a block of size 31 free'd
+==1865674==    at 0x484B8AF: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865674==    by 0x40D71D: WrongBrain::~WrongBrain() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x40D11D: WrongDog::~WrongDog() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x406546: testShallowCopyProblem() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x402C4E: main (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==  Block was alloc'd at
+==1865674==    at 0x4849013: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865674==    by 0x49BCFEE: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==1865674==    by 0x49BD4AC: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==1865674==    by 0x40D9B0: WrongBrain::setIdea(int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x405E9B: testShallowCopyProblem() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x402C4E: main (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674== 
+==1865674== Invalid free() / delete / delete[] / realloc()
+==1865674==    at 0x484B8AF: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865674==    by 0x40D12B: WrongDog::~WrongDog() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x406557: testShallowCopyProblem() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x402C4E: main (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==  Address 0x4de6cc0 is 0 bytes inside a block of size 3,200 free'd
+==1865674==    at 0x484B8AF: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865674==    by 0x40D12B: WrongDog::~WrongDog() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x406546: testShallowCopyProblem() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x402C4E: main (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==  Block was alloc'd at
+==1865674==    at 0x4849013: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865674==    by 0x40CD1C: WrongDog::WrongDog() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x405DAF: testShallowCopyProblem() (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674==    by 0x402C4E: main (in /home/torinoue/tmp/REV_CPP04/ex01/brain_test)
+==1865674== 
+[35mWrongAnimal destructor called           this: 0x1ffefff9e8[0m
+
+
+📚 学習ポイント:
+・浅いコピーでは複数オブジェクトが同じリソースを共有
+・一方の変更が他方に影響する
+・double deleteエラーのリスク
+・課題書要求：「A copy of a Dog or a Cat mustn't be shallow」
+[33m
+=== CPP04 Exercise 01: I don’t want to set the world on fire. ===[0m
+1: Subject Required Basic Test                        課題書要求の基本テスト
+2: Deep Copy Test                                     ディープコピーテスト
+3: Virtual欠如問題の実証                              Virtual polymorphism failure
+4: 浅いコピー問題の実証 (WrongDog)                    Shallow copy problem
+5: Wrong系浅いコピー詳細実証                          Wrong shallow copy detailed
+6: Assignment Operator Test                           代入演算子テスト
+7: Exception Handling Test                            例外処理テスト
+0: Exit                                               終了
+選択してください: ==1865674== 
+==1865674== HEAP SUMMARY:
+==1865674==     in use at exit: 0 bytes in 0 blocks
+==1865674==   total heap usage: 17 allocs, 19 frees, 87,656 bytes allocated
+==1865674== 
+==1865674== All heap blocks were freed -- no leaks are possible
+==1865674== 
+==1865674== For lists of detected and suppressed errors, rerun with: -s
+==1865674== ERROR SUMMARY: 102 errors from 3 contexts (suppressed: 0 from 0)

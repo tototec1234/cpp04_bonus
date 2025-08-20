@@ -28,7 +28,7 @@ int main() {
 	bool running = true;
 
 	while (running) {
-		std::cout << YELLOW_COLOR << "\n\n=== Animal Test Menu ===" << RESET_COLOR << std::endl;
+		std::cout << YELLOW_COLOR << "\n\n=== CPP04  Exercise 00: Polymorphism ===" << RESET_COLOR << std::endl;
 		std::cout << "=== 動物テストメニュー ===" << std::endl;
 		std::cout << "1: Test Correct Polymorphism (Animal* with virtual)          正しい多態性テスト" << std::endl;
 		std::cout << "2: Test Polymorphic Instantiation Problems (WrongAnimal*)    多態性インスタンス化問題" << std::endl;

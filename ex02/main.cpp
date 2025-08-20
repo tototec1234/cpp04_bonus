@@ -36,7 +36,7 @@ int main() {
 	bool running = true;
 
 	while (running) {
-		std::cout << "\n\033[33m=== CPP04 Exercise 02 Test Menu ===\033[0m" << std::endl;
+		std::cout << "\n\033[33m=== CPP04 Exercise 02 Abstract class. ===\033[0m" << std::endl;
 		std::cout << "=== CPP04 演習02 テストメニュー ===" << std::endl;
 		std::cout << "1: Test Basic Animal Array Functionality                    基本的な動物配列機能テスト" << std::endl;
 		std::cout << "2: Test Deep Copy (Copy Constructor)                        ディープコピーテスト（コピーコンストラクタ）" << std::endl;
