@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   WrongBrain.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 17:34:05 by toruinoue        ###   ########.fr       */
+/*   Created: 2025/01/27 22:00:00 by toruinoue        #+#    #+#             */
+/*   Updated: 2025/01/27 22:00:00 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_HPP
-#define WRONGCAT_HPP
+#ifndef WRONGBRAIN_HPP
+#define WRONGBRAIN_HPP
 
-#include "WrongAnimal.hpp"
-#include "WrongBrain.hpp"
+#include <iostream>
+#include <string>
+#include <stdexcept>
 
-class WrongCat : public WrongAnimal {
+class WrongBrain {
 private:
-	WrongBrain* brain;
+	std::string ideas[100];
 
 public:
-	WrongCat();
-	WrongCat(const WrongCat &other);
-	WrongCat &operator=(const WrongCat &other);
-	~WrongCat();
+	WrongBrain();
+	WrongBrain(const WrongBrain &other);
+	WrongBrain &operator=(const WrongBrain &other);
+	~WrongBrain();
 
-	void makeSound() const;  // NOT virtual!
-	WrongBrain& getBrain() const;
+	void setIdea(int index, const std::string &idea);
+	std::string getIdea(int index) const;
+	void printIdeas() const;
 };
 
 #endif

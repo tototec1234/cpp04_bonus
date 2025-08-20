@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   tests.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 17:34:05 by toruinoue        ###   ########.fr       */
+/*   Created: 2025/01/27 22:00:00 by toruinoue        #+#    #+#             */
+/*   Updated: 2025/01/27 22:00:00 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_HPP
-#define WRONGCAT_HPP
+#ifndef TESTS_HPP
+#define TESTS_HPP
 
-#include "WrongAnimal.hpp"
-#include "WrongBrain.hpp"
-
-class WrongCat : public WrongAnimal {
-private:
-	WrongBrain* brain;
-
-public:
-	WrongCat();
-	WrongCat(const WrongCat &other);
-	WrongCat &operator=(const WrongCat &other);
-	~WrongCat();
-
-	void makeSound() const;  // NOT virtual!
-	WrongBrain& getBrain() const;
-};
+// テスト関数の宣言
+// 実験計画法的アプローチ：2つの核心問題に焦点を絞ったテスト
+void testSubjectRequiredBasic();
+void testVirtualPolymorphismProblem();
+void testShallowCopyProblem();
 
 #endif

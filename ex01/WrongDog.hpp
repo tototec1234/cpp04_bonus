@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 14:50:21 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 16:58:41 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 #define WRONGDOG_HPP
 
 #include "WrongAnimal.hpp"
+#include "WrongBrain.hpp"
 
 class WrongDog : public WrongAnimal {
+private:
+	WrongBrain* brain;
+
 public:
 	WrongDog();
 	WrongDog(const WrongDog &other);
@@ -23,6 +27,7 @@ public:
 	~WrongDog();
 
 	void makeSound() const;  // NOT virtual!
+	WrongBrain& getBrain() const;
 };
 
 #endif

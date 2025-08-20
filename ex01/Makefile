@@ -10,6 +10,7 @@ SRCS = 	main.cpp \
 	WrongAnimal.cpp \
 	WrongCat.cpp \
 	WrongDog.cpp \
+	WrongBrain.cpp \
 
 MAKE = make
 OBJS = $(SRCS:.cpp=.o)
