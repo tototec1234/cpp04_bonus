@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/19 22:15:52 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 14:43:50 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ WrongAnimal::WrongAnimal(const std::string &animalType) : type(animalType)
 	std::cout << BLUE_COLOR << "WrongAnimal parameterized constructor called" << RESET_COLOR << std::endl;
 	std::cout << "type: " << type << ", this: " << this << std::endl;
 }
-
-
 
 WrongAnimal::~WrongAnimal()
 {

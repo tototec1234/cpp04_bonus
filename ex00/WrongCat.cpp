@@ -6,10 +6,9 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/19 23:40:20 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 14:43:57 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "WrongCat.hpp"
 #include "AnsiColor.hpp"
@@ -19,8 +18,6 @@ WrongCat::WrongCat() : WrongAnimal("WrongCat")
 	std::cout << MAGENTA_COLOR << "WrongCat default constructor called" << RESET_COLOR << std::endl;
 	std::cout << "type: " << type << ", this: " << this << std::endl;
 }
-
-
 
 WrongCat::~WrongCat()
 {
