@@ -16,7 +16,11 @@
 // テスト関数の宣言
 // 実験計画法的アプローチ：2つの核心問題に焦点を絞ったテスト
 void testSubjectRequiredBasic();
+void testDeepCopy();
 void testVirtualPolymorphismProblem();
 void testShallowCopyProblem();
+void testWrongShallowCopy();
+void testAssignmentOperator();
+void testExceptionHandling();
 
 #endif

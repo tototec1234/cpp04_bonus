@@ -20,34 +20,37 @@
 #include "tests.hpp"
 
 void testVirtualPolymorphismProblem() {
-	std::cout << "\033[31m=== 2: Virtual不足問題の実証 ===\033[0m" << std::endl;
+	std::cout << "\033[31m=== 3: Virtual不足問題の実証 ===\033[0m" << std::endl;
 	std::cout << "Wrong系クラスにはvirtualキーワードがありません！\n" << std::endl;
 
 	std::cout << "----- ✅ 正常なポリモーフィズム (Animal系 - virtual使用) -----" << std::endl;
 	{
-		std::cout << "Animal* animal = new Dog();" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: Animal* animal = new Dog();" << RESET_COLOR << std::endl;
 		Animal* animal = new Dog();
-		std::cout << "animal->makeSound(); // virtual -> Dog::makeSound()が呼ばれる" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: animal->makeSound(); // virtual -> Dog::makeSound()が呼ばれる" << RESET_COLOR << std::endl;
 		animal->makeSound();
+		std::cout << BOLD_GREEN_COLOR << "Executing: delete animal;" << RESET_COLOR << std::endl;
 		delete animal;
 		std::cout << "✅ 期待通り：Dogの鳴き声\n" << std::endl;
 	}
 
 	std::cout << "----- 🔴 問題のあるポリモーフィズム (WrongAnimal系 - virtual未使用) -----" << std::endl;
 	{
-		std::cout << "WrongAnimal* wrongAnimal = new WrongCat();" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: WrongAnimal* wrongAnimal = new WrongCat();" << RESET_COLOR << std::endl;
 		WrongAnimal* wrongAnimal = new WrongCat();
-		std::cout << "wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound()が呼ばれる" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound()が呼ばれる" << RESET_COLOR << std::endl;
 		wrongAnimal->makeSound();
+		std::cout << BOLD_GREEN_COLOR << "Executing: delete wrongAnimal; // ⚠️ メモリリークも発生" << RESET_COLOR << std::endl;
 		delete wrongAnimal;  // ⚠️ メモリリークも発生
 		std::cout << "❌ 問題：WrongAnimalの鳴き声（WrongCatではない）\n" << std::endl;
 	}
 
 	{
-		std::cout << "WrongAnimal* wrongAnimal = new WrongDog();" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: WrongAnimal* wrongAnimal = new WrongDog();" << RESET_COLOR << std::endl;
 		WrongAnimal* wrongAnimal = new WrongDog();
-		std::cout << "wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound()が呼ばれる" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound()が呼ばれる" << RESET_COLOR << std::endl;
 		wrongAnimal->makeSound();
+		std::cout << BOLD_GREEN_COLOR << "Executing: delete wrongAnimal; // ⚠️ メモリリークも発生" << RESET_COLOR << std::endl;
 		delete wrongAnimal;  // ⚠️ メモリリークも発生
 		std::cout << "❌ 問題：WrongAnimalの鳴き声（WrongDogではない）\n" << std::endl;
 	}

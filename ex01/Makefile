@@ -3,6 +3,13 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = 	main.cpp \
+	test_basic.cpp \
+	test_deep_copy.cpp \
+	test_virtual.cpp \
+	test_shallow_copy.cpp \
+	test_wrong_copy.cpp \
+	test_assignment.cpp \
+	test_exception.cpp \
 	Animal.cpp \
 	Dog.cpp \
 	Cat.cpp \
