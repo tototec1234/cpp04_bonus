@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/17 17:36:08 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 14:50:19 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ WrongDog::WrongDog(const WrongDog &other) : WrongAnimal(other) {
 WrongDog &WrongDog::operator=(const WrongDog &other) {
 	std::cout << CYAN_COLOR << "WrongDog assignment operator called    this: " << this << RESET_COLOR << std::endl;
 	if (this != &other) {
-	    WrongAnimal::operator=(other);
+		WrongAnimal::operator=(other);
 	}
 	return *this;
 }

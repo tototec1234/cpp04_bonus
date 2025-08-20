@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 08:50:19 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 14:49:16 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,56 +20,57 @@ void testDeepCopy();
 void testAssignmentOperator();
 void testVirtualDestructorWithBrain();
 void testExceptionHandling();
+
 int main() {
 	int choice;
 	bool running = true;
 
 	while (running) {
-	    std::cout << "\n=== CPP04 Exercise 01 Test Menu ===" << std::endl;
-	    std::cout << "=== CPP04 演習01 テストメニュー ===" << std::endl;
-	    std::cout << "1: Basic Animal Array Functionality Test                    基本的な動物配列機能テスト" << std::endl;
-	    std::cout << "2: Deep Copy Test                                          ディープコピーテスト" << std::endl;
-	    std::cout << "3: Assignment Operator Test                                代入演算子テスト" << std::endl;
-	    std::cout << "4: Virtual Destructor Importance Test                      仮想デストラクタの重要性テスト" << std::endl;
-	    std::cout << "5: Exception Handling Test                                 例外処理テスト" << std::endl;
-	    std::cout << "0: Exit                                                    終了" << std::endl;
-	    std::cout << "Please select an option / 選択してください: ";
-	    
-	    // Exception-safe input handling
-	    if (!(std::cin >> choice)) {
-	        std::cout << "⚠️ Invalid input! Please enter a number. / 無効な入力です！数字を入力してください。" << std::endl;
-	        std::cin.clear();  // Clear error flag
-	        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear input buffer
-	        continue;
-	    }
+		std::cout << "\n=== CPP04 Exercise 01 Test Menu ===" << std::endl;
+		std::cout << "=== CPP04 演習01 テストメニュー ===" << std::endl;
+		std::cout << "1: Basic Animal Array Functionality Test                    基本的な動物配列機能テスト" << std::endl;
+		std::cout << "2: Deep Copy Test                                          ディープコピーテスト" << std::endl;
+		std::cout << "3: Assignment Operator Test                                代入演算子テスト" << std::endl;
+		std::cout << "4: Virtual Destructor Importance Test                      仮想デストラクタの重要性テスト" << std::endl;
+		std::cout << "5: Exception Handling Test                                 例外処理テスト" << std::endl;
+		std::cout << "0: Exit                                                    終了" << std::endl;
+		std::cout << "Please select an option / 選択してください: ";
 
-	    try {
-	        switch (choice) {
-	            case 1:
-	                testBasicFunctionality();
-	                break;
-	            case 2:
-	                testDeepCopy();
-	                break;
-	            case 3:
-	                testAssignmentOperator();
-	                break;
-	            case 4:
-	                testVirtualDestructorWithBrain();
-	                break;
-	            case 5:
-	                testExceptionHandling();
-	                break;
-	            case 0:
-	                running = false;
-	                break;
-	            default:
-	                std::cout << "Invalid selection. Please try again. / 無効な選択です。もう一度試してください。" << std::endl;
-	        }
-	    } catch (const std::exception &e) {
-	        std::cout << "⚠️ Exception caught: " << e.what() << std::endl;
-	        std::cout << "Test continued... / テストを継続します..." << std::endl;
-	    }
+		// Exception-safe input handling
+		if (!(std::cin >> choice)) {
+			std::cout << "⚠️ Invalid input! Please enter a number. / 無効な入力です！数字を入力してください。" << std::endl;
+			std::cin.clear();  // Clear error flag
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear input buffer
+			continue;
+		}
+
+		try {
+			switch (choice) {
+				case 1:
+					testBasicFunctionality();
+					break;
+				case 2:
+					testDeepCopy();
+					break;
+				case 3:
+					testAssignmentOperator();
+					break;
+				case 4:
+					testVirtualDestructorWithBrain();
+					break;
+				case 5:
+					testExceptionHandling();
+					break;
+				case 0:
+					running = false;
+					break;
+				default:
+					std::cout << "Invalid selection. Please try again. / 無効な選択です。もう一度試してください。" << std::endl;
+			}
+		} catch (const std::exception &e) {
+			std::cout << "⚠️ Exception caught: " << e.what() << std::endl;
+			std::cout << "Test continued... / テストを継続します..." << std::endl;
+		}
 	}
 
 	return 0;
@@ -84,50 +85,50 @@ void testBasicFunctionality() {
 
 	std::cout << "\n----- Creating Animal Array (half Dogs, half Cats) -----" << std::endl;
 	try {
-	    // Fill half with dogs, half with cats
-	    for (int i = 0; i < ARRAY_SIZE / 2; i++) {
-	        std::cout << "Creating Dog[" << i << "]:" << std::endl;
-	        animals[i] = new Dog();
-	        created++;
-	        std::cout << std::endl;
-	    }
+		// Fill half with dogs, half with cats
+		for (int i = 0; i < ARRAY_SIZE / 2; i++) {
+			std::cout << "Creating Dog[" << i << "]:" << std::endl;
+			animals[i] = new Dog();
+			created++;
+			std::cout << std::endl;
+		}
 
-	    for (int i = ARRAY_SIZE / 2; i < ARRAY_SIZE; i++) {
-	        std::cout << "Creating Cat[" << i << "]:" << std::endl;
-	        animals[i] = new Cat();
-	        created++;
-	        std::cout << std::endl;
-	    }
+		for (int i = ARRAY_SIZE / 2; i < ARRAY_SIZE; i++) {
+			std::cout << "Creating Cat[" << i << "]:" << std::endl;
+			animals[i] = new Cat();
+			created++;
+			std::cout << std::endl;
+		}
 	} catch (const std::bad_alloc &e) {
-	    std::cout << "⚠️ Memory allocation failed: " << e.what() << std::endl;
-	    std::cout << "Cleaning up already created animals..." << std::endl;
-	    for (int i = 0; i < created; i++) {
-	        delete animals[i];
-	    }
-	    return;
+		std::cout << "⚠️ Memory allocation failed: " << e.what() << std::endl;
+		std::cout << "Cleaning up already created animals..." << std::endl;
+		for (int i = 0; i < created; i++) {
+			delete animals[i];
+		}
+		return;
 	} catch (const std::exception &e) {
-	    std::cout << "⚠️ Exception during creation: " << e.what() << std::endl;
-	    for (int i = 0; i < created; i++) {
-	        delete animals[i];
-	    }
-	    return;
+		std::cout << "⚠️ Exception during creation: " << e.what() << std::endl;
+		for (int i = 0; i < created; i++) {
+			delete animals[i];
+		}
+		return;
 	}
 
 	std::cout << "\n----- Testing Polymorphic Behavior -----" << std::endl;
 	for (int i = 0; i < ARRAY_SIZE; i++) {
-	    std::cout << "Animal[" << i << "] (" << animals[i]->getType() << "): ";
-	    animals[i]->makeSound();
+		std::cout << "Animal[" << i << "] (" << animals[i]->getType() << "): ";
+		animals[i]->makeSound();
 	}
 
 	std::cout << "\n----- Destroying Animals (virtual destructor ensures proper cleanup) -----" << std::endl;
 	try {
-	    for (int i = 0; i < ARRAY_SIZE; i++) {
-	        std::cout << "Deleting Animal[" << i << "]:" << std::endl;
-	        delete animals[i];
-	        std::cout << std::endl;
-	    }
+		for (int i = 0; i < ARRAY_SIZE; i++) {
+			std::cout << "Deleting Animal[" << i << "]:" << std::endl;
+			delete animals[i];
+			std::cout << std::endl;
+		}
 	} catch (const std::exception &e) {
-	    std::cout << "⚠️ Exception during destruction: " << e.what() << std::endl;
+		std::cout << "⚠️ Exception during destruction: " << e.what() << std::endl;
 	}
 }
 
@@ -136,59 +137,59 @@ void testDeepCopy() {
 
 	std::cout << "\n----- Testing Dog Deep Copy -----" << std::endl;
 	{
-	    Dog originalDog;
-	    originalDog.getBrain()->setIdea(0, "Chase squirrels");
-	    originalDog.getBrain()->setIdea(1, "Protect house");
-	    originalDog.getBrain()->setIdea(2, "Bark at mailman");
+		Dog originalDog;
+		originalDog.getBrain()->setIdea(0, "Chase squirrels");
+		originalDog.getBrain()->setIdea(1, "Protect house");
+		originalDog.getBrain()->setIdea(2, "Bark at mailman");
 
-	    std::cout << "\nOriginal dog's brain address: " << originalDog.getBrain() << std::endl;
-	    std::cout << "Original dog ideas:" << std::endl;
-	    originalDog.getBrain()->printIdeas();
+		std::cout << "\nOriginal dog's brain address: " << originalDog.getBrain() << std::endl;
+		std::cout << "Original dog ideas:" << std::endl;
+		originalDog.getBrain()->printIdeas();
 
-	    std::cout << "\n--- Creating copy using copy constructor ---" << std::endl;
-	    Dog copiedDog = originalDog;  // Copy constructor
+		std::cout << "\n--- Creating copy using copy constructor ---" << std::endl;
+		Dog copiedDog = originalDog;  // Copy constructor
 
-	    std::cout << "\nCopied dog's brain address: " << copiedDog.getBrain() << std::endl;
-	    std::cout << "Copied dog ideas (should be same content, different address):" << std::endl;
-	    copiedDog.getBrain()->printIdeas();
+		std::cout << "\nCopied dog's brain address: " << copiedDog.getBrain() << std::endl;
+		std::cout << "Copied dog ideas (should be same content, different address):" << std::endl;
+		copiedDog.getBrain()->printIdeas();
 
-	    std::cout << "\n--- Verifying deep copy by modifying original ---" << std::endl;
-	    originalDog.getBrain()->setIdea(0, "Sleep all day");
-	    originalDog.getBrain()->setIdea(3, "Dream about food");
+		std::cout << "\n--- Verifying deep copy by modifying original ---" << std::endl;
+		originalDog.getBrain()->setIdea(0, "Sleep all day");
+		originalDog.getBrain()->setIdea(3, "Dream about food");
 
-	    std::cout << "\nAfter modifying original:" << std::endl;
-	    std::cout << "Original dog ideas (modified):" << std::endl;
-	    originalDog.getBrain()->printIdeas();
+		std::cout << "\nAfter modifying original:" << std::endl;
+		std::cout << "Original dog ideas (modified):" << std::endl;
+		originalDog.getBrain()->printIdeas();
 
-	    std::cout << "Copied dog ideas (should be unchanged - proof of deep copy):" << std::endl;
-	    copiedDog.getBrain()->printIdeas();
+		std::cout << "Copied dog ideas (should be unchanged - proof of deep copy):" << std::endl;
+		copiedDog.getBrain()->printIdeas();
 
-	    std::cout << "\n✅ Deep copy verified: Different brain addresses, independent content" << std::endl;
+		std::cout << "\n✅ Deep copy verified: Different brain addresses, independent content" << std::endl;
 	}
 
 	std::cout << "\n----- Testing Cat Deep Copy -----" << std::endl;
 	{
-	    Cat originalCat;
-	    originalCat.getBrain()->setIdea(0, "Hunt mice");
-	    originalCat.getBrain()->setIdea(1, "Nap in sunlight");
+		Cat originalCat;
+		originalCat.getBrain()->setIdea(0, "Hunt mice");
+		originalCat.getBrain()->setIdea(1, "Nap in sunlight");
 
-	    std::cout << "\nOriginal cat's brain address: " << originalCat.getBrain() << std::endl;
-	    std::cout << "Original cat ideas:" << std::endl;
-	    originalCat.getBrain()->printIdeas();
+		std::cout << "\nOriginal cat's brain address: " << originalCat.getBrain() << std::endl;
+		std::cout << "Original cat ideas:" << std::endl;
+		originalCat.getBrain()->printIdeas();
 
-	    Cat copiedCat = originalCat;  // Copy constructor
+		Cat copiedCat = originalCat;  // Copy constructor
 
-	    std::cout << "\nCopied cat's brain address: " << copiedCat.getBrain() << std::endl;
+		std::cout << "\nCopied cat's brain address: " << copiedCat.getBrain() << std::endl;
 
-	    // Modify original to prove deep copy
-	    originalCat.getBrain()->setIdea(0, "Knock things off table");
+		// Modify original to prove deep copy
+		originalCat.getBrain()->setIdea(0, "Knock things off table");
 
-	    std::cout << "\nAfter modifying original cat:" << std::endl;
-	    std::cout << "Original cat ideas (modified):" << std::endl;
-	    originalCat.getBrain()->printIdeas();
+		std::cout << "\nAfter modifying original cat:" << std::endl;
+		std::cout << "Original cat ideas (modified):" << std::endl;
+		originalCat.getBrain()->printIdeas();
 
-	    std::cout << "Copied cat ideas (should be unchanged - proof of deep copy):" << std::endl;
-	    copiedCat.getBrain()->printIdeas();
+		std::cout << "Copied cat ideas (should be unchanged - proof of deep copy):" << std::endl;
+		copiedCat.getBrain()->printIdeas();
 	}
 }
 
@@ -197,84 +198,84 @@ void testAssignmentOperator() {
 
 	std::cout << "\n----- Testing Dog Assignment Operator -----" << std::endl;
 	{
-	    Dog dog1;
-	    Dog dog2;
+		Dog dog1;
+		Dog dog2;
 
-	    dog1.getBrain()->setIdea(0, "Original dog idea");
-	    dog1.getBrain()->setIdea(1, "Another original idea");
+		dog1.getBrain()->setIdea(0, "Original dog idea");
+		dog1.getBrain()->setIdea(1, "Another original idea");
 
-	    dog2.getBrain()->setIdea(0, "Different dog idea");
+		dog2.getBrain()->setIdea(0, "Different dog idea");
 
-	    std::cout << "\nBefore assignment:" << std::endl;
-	    std::cout << "Dog1 brain address: " << dog1.getBrain() << std::endl;
-	    std::cout << "Dog1 ideas:" << std::endl;
-	    dog1.getBrain()->printIdeas();
+		std::cout << "\nBefore assignment:" << std::endl;
+		std::cout << "Dog1 brain address: " << dog1.getBrain() << std::endl;
+		std::cout << "Dog1 ideas:" << std::endl;
+		dog1.getBrain()->printIdeas();
 
-	    std::cout << "\nDog2 brain address: " << dog2.getBrain() << std::endl;
-	    std::cout << "Dog2 ideas:" << std::endl;
-	    dog2.getBrain()->printIdeas();
+		std::cout << "\nDog2 brain address: " << dog2.getBrain() << std::endl;
+		std::cout << "Dog2 ideas:" << std::endl;
+		dog2.getBrain()->printIdeas();
 
-	    std::cout << "\n--- Performing assignment (dog2 = dog1) ---" << std::endl;
-	    dog2 = dog1;  // Assignment operator
+		std::cout << "\n--- Performing assignment (dog2 = dog1) ---" << std::endl;
+		dog2 = dog1;  // Assignment operator
 
-	    std::cout << "\nAfter assignment:" << std::endl;
-	    std::cout << "Dog1 brain address: " << dog1.getBrain() << std::endl;
-	    std::cout << "Dog2 brain address: " << dog2.getBrain() << std::endl;
-	    std::cout << "Dog2 ideas (should be same content, different address):" << std::endl;
-	    dog2.getBrain()->printIdeas();
+		std::cout << "\nAfter assignment:" << std::endl;
+		std::cout << "Dog1 brain address: " << dog1.getBrain() << std::endl;
+		std::cout << "Dog2 brain address: " << dog2.getBrain() << std::endl;
+		std::cout << "Dog2 ideas (should be same content, different address):" << std::endl;
+		dog2.getBrain()->printIdeas();
 
-	    std::cout << "\n--- Verifying independent modification ---" << std::endl;
-	    dog1.getBrain()->setIdea(0, "Modified after assignment");
+		std::cout << "\n--- Verifying independent modification ---" << std::endl;
+		dog1.getBrain()->setIdea(0, "Modified after assignment");
 
-	    std::cout << "\nAfter modifying dog1:" << std::endl;
-	    std::cout << "Dog1 ideas (modified):" << std::endl;
-	    dog1.getBrain()->printIdeas();
+		std::cout << "\nAfter modifying dog1:" << std::endl;
+		std::cout << "Dog1 ideas (modified):" << std::endl;
+		dog1.getBrain()->printIdeas();
 
-	    std::cout << "Dog2 ideas (should be unchanged - proof of deep copy):" << std::endl;
-	    dog2.getBrain()->printIdeas();
+		std::cout << "Dog2 ideas (should be unchanged - proof of deep copy):" << std::endl;
+		dog2.getBrain()->printIdeas();
 
-	    std::cout << "\n✅ Dog assignment operator deep copy verified" << std::endl;
+		std::cout << "\n✅ Dog assignment operator deep copy verified" << std::endl;
 	}
 
 	std::cout << "\n----- Testing Cat Assignment Operator -----" << std::endl;
 	{
-	    Cat cat1;
-	    Cat cat2;
+		Cat cat1;
+		Cat cat2;
 
-	    cat1.getBrain()->setIdea(0, "Original cat idea");
-	    cat1.getBrain()->setIdea(1, "Sleep in sunny spot");
+		cat1.getBrain()->setIdea(0, "Original cat idea");
+		cat1.getBrain()->setIdea(1, "Sleep in sunny spot");
 
-	    cat2.getBrain()->setIdea(0, "Different cat idea");
+		cat2.getBrain()->setIdea(0, "Different cat idea");
 
-	    std::cout << "\nBefore assignment:" << std::endl;
-	    std::cout << "Cat1 brain address: " << cat1.getBrain() << std::endl;
-	    std::cout << "Cat1 ideas:" << std::endl;
-	    cat1.getBrain()->printIdeas();
+		std::cout << "\nBefore assignment:" << std::endl;
+		std::cout << "Cat1 brain address: " << cat1.getBrain() << std::endl;
+		std::cout << "Cat1 ideas:" << std::endl;
+		cat1.getBrain()->printIdeas();
 
-	    std::cout << "\nCat2 brain address: " << cat2.getBrain() << std::endl;
-	    std::cout << "Cat2 ideas:" << std::endl;
-	    cat2.getBrain()->printIdeas();
+		std::cout << "\nCat2 brain address: " << cat2.getBrain() << std::endl;
+		std::cout << "Cat2 ideas:" << std::endl;
+		cat2.getBrain()->printIdeas();
 
-	    std::cout << "\n--- Performing assignment (cat2 = cat1) ---" << std::endl;
-	    cat2 = cat1;  // Assignment operator
+		std::cout << "\n--- Performing assignment (cat2 = cat1) ---" << std::endl;
+		cat2 = cat1;  // Assignment operator
 
-	    std::cout << "\nAfter assignment:" << std::endl;
-	    std::cout << "Cat1 brain address: " << cat1.getBrain() << std::endl;
-	    std::cout << "Cat2 brain address: " << cat2.getBrain() << std::endl;
-	    std::cout << "Cat2 ideas (should be same content, different address):" << std::endl;
-	    cat2.getBrain()->printIdeas();
+		std::cout << "\nAfter assignment:" << std::endl;
+		std::cout << "Cat1 brain address: " << cat1.getBrain() << std::endl;
+		std::cout << "Cat2 brain address: " << cat2.getBrain() << std::endl;
+		std::cout << "Cat2 ideas (should be same content, different address):" << std::endl;
+		cat2.getBrain()->printIdeas();
 
-	    std::cout << "\n--- Verifying independent modification ---" << std::endl;
-	    cat1.getBrain()->setIdea(0, "Modified cat thought");
+		std::cout << "\n--- Verifying independent modification ---" << std::endl;
+		cat1.getBrain()->setIdea(0, "Modified cat thought");
 
-	    std::cout << "\nAfter modifying cat1:" << std::endl;
-	    std::cout << "Cat1 ideas (modified):" << std::endl;
-	    cat1.getBrain()->printIdeas();
+		std::cout << "\nAfter modifying cat1:" << std::endl;
+		std::cout << "Cat1 ideas (modified):" << std::endl;
+		cat1.getBrain()->printIdeas();
 
-	    std::cout << "Cat2 ideas (should be unchanged - proof of deep copy):" << std::endl;
-	    cat2.getBrain()->printIdeas();
+		std::cout << "Cat2 ideas (should be unchanged - proof of deep copy):" << std::endl;
+		cat2.getBrain()->printIdeas();
 
-	    std::cout << "\n✅ Cat assignment operator deep copy verified" << std::endl;
+		std::cout << "\n✅ Cat assignment operator deep copy verified" << std::endl;
 	}
 }
 
@@ -284,10 +285,10 @@ void testVirtualDestructorWithBrain() {
 
 	std::cout << "\n----- Correct usage with virtual destructor -----" << std::endl;
 	{
-	    Animal* animal = new Dog();
-	    animal->makeSound();
-	    std::cout << "\n削除時: virtualデストラクタによりDog→Animalの順で適切に呼ばれ、Brainも解放されます" << std::endl;
-	    delete animal;  // Dog destructor → Animal destructor (Brain properly deleted)
+		Animal* animal = new Dog();
+		animal->makeSound();
+		std::cout << "\n削除時: virtualデストラクタによりDog→Animalの順で適切に呼ばれ、Brainも解放されます" << std::endl;
+		delete animal;  // Dog destructor → Animal destructor (Brain properly deleted)
 	}
 
 	std::cout << "\n⚠️ もしvirtualデストラクタがなかった場合:" << std::endl;
@@ -307,43 +308,43 @@ void testExceptionHandling() {
 
 	std::cout << "\n----- Testing Brain Array Bounds Checking -----" << std::endl;
 	try {
-	    Dog dog;
-	    std::cout << "✅ Setting valid idea at index 0:" << std::endl;
-	    dog.getBrain()->setIdea(0, "Valid idea");
-	    std::cout << "Retrieved idea: \"" << dog.getBrain()->getIdea(0) << "\"" << std::endl;
+		Dog dog;
+		std::cout << "✅ Setting valid idea at index 0:" << std::endl;
+		dog.getBrain()->setIdea(0, "Valid idea");
+		std::cout << "Retrieved idea: \"" << dog.getBrain()->getIdea(0) << "\"" << std::endl;
 
-	    std::cout << "\n⚠️ Attempting to set idea at invalid index 100:" << std::endl;
-	    dog.getBrain()->setIdea(100, "Invalid index idea");
+		std::cout << "\n⚠️ Attempting to set idea at invalid index 100:" << std::endl;
+		dog.getBrain()->setIdea(100, "Invalid index idea");
 	} catch (const std::out_of_range &e) {
-	    std::cout << "✅ Exception caught: " << e.what() << std::endl;
+		std::cout << "✅ Exception caught: " << e.what() << std::endl;
 	}
 
 	try {
-	    Dog dog;
-	    std::cout << "\n⚠️ Attempting to get idea at invalid index -1:" << std::endl;
-	    std::string idea = dog.getBrain()->getIdea(-1);
+		Dog dog;
+		std::cout << "\n⚠️ Attempting to get idea at invalid index -1:" << std::endl;
+		std::string idea = dog.getBrain()->getIdea(-1);
 	} catch (const std::out_of_range &e) {
-	    std::cout << "✅ Exception caught: " << e.what() << std::endl;
+		std::cout << "✅ Exception caught: " << e.what() << std::endl;
 	}
 
 	std::cout << "\n----- Testing Exception Safety in Assignment Operator -----" << std::endl;
 	try {
-	    Cat cat1, cat2;
-	    cat1.getBrain()->setIdea(0, "Original cat idea");
-	    cat1.getBrain()->setIdea(1, "Another idea");
+		Cat cat1, cat2;
+		cat1.getBrain()->setIdea(0, "Original cat idea");
+		cat1.getBrain()->setIdea(1, "Another idea");
 
-	    std::cout << "Cat1 brain address before assignment: " << cat1.getBrain() << std::endl;
-	    std::cout << "Cat2 brain address before assignment: " << cat2.getBrain() << std::endl;
+		std::cout << "Cat1 brain address before assignment: " << cat1.getBrain() << std::endl;
+		std::cout << "Cat2 brain address before assignment: " << cat2.getBrain() << std::endl;
 
-	    cat2 = cat1;  // This should be exception-safe now
+		cat2 = cat1;  // This should be exception-safe now
 
-	    std::cout << "✅ Assignment completed successfully" << std::endl;
-	    std::cout << "Cat1 brain address after assignment: " << cat1.getBrain() << std::endl;
-	    std::cout << "Cat2 brain address after assignment: " << cat2.getBrain() << std::endl;
-	    std::cout << "Cat2 idea[0]: \"" << cat2.getBrain()->getIdea(0) << "\"" << std::endl;
+		std::cout << "✅ Assignment completed successfully" << std::endl;
+		std::cout << "Cat1 brain address after assignment: " << cat1.getBrain() << std::endl;
+		std::cout << "Cat2 brain address after assignment: " << cat2.getBrain() << std::endl;
+		std::cout << "Cat2 idea[0]: \"" << cat2.getBrain()->getIdea(0) << "\"" << std::endl;
 
 	} catch (const std::exception &e) {
-	    std::cout << "⚠️ Exception during assignment: " << e.what() << std::endl;
+		std::cout << "⚠️ Exception during assignment: " << e.what() << std::endl;
 	}
 
 	std::cout << "\n✅ Exception handling improvements:" << std::endl;

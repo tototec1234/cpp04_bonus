@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/17 17:35:19 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 14:50:08 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other) {
 WrongCat &WrongCat::operator=(const WrongCat &other) {
 	std::cout << MAGENTA_COLOR << "WrongCat assignment operator called    this: " << this << RESET_COLOR << std::endl;
 	if (this != &other) {
-	    WrongAnimal::operator=(other);
+		WrongAnimal::operator=(other);
 	}
 	return *this;
 }
