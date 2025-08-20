@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/21 01:03:12 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/21 01:16:17 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,4 @@ WrongBrain& WrongDog::getBrain() const {
 	return *this->brain;
 }
 
-// Safety method implementation for review
-void WrongDog::nullifyBrainForSafety() {
-	std::cout << CYAN_COLOR << "  🛡️  SAFETY: brainポインタをNULLに設定 (double delete防止)" << RESET_COLOR << std::endl;
-	this->brain = NULL;  // Safety measure: Set to NULL to prevent double delete
-}
+
