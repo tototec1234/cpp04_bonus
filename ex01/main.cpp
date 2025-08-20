@@ -75,3 +75,7 @@ int main() {
 
 	return 0;
 }
+
+/*
+valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./brain_test
+*/
