@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:21:32 by toruinoue         #+#    #+#             */
-/*   Updated: 2025/08/20 23:59:55 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/21 01:28:34 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void testSubjectRequiredBasic();
 void testDeepCopy();
 void testVirtualPolymorphismProblem();
 void testShallowCopyProblem();
-void testWrongShallowCopy();
-void testWrongComprehensiveDemo();
 void testAssignmentOperator();
-void testExceptionHandling();
 
 #endif
