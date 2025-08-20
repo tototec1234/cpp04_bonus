@@ -56,6 +56,7 @@ WrongBrain& WrongDog::getBrain() const {
 
 // Safety method implementation for review
 void WrongDog::nullifyBrainForSafety() {
+	// return ;
 	std::cout << CYAN_COLOR << "  🛡️  SAFETY: brainポインタをNULLに設定 (double delete防止)" << RESET_COLOR << std::endl;
 	this->brain = NULL;  // Safety measure: Set to NULL to prevent double delete
 }

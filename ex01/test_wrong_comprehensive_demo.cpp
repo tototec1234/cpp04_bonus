@@ -59,7 +59,6 @@ void testWrongComprehensiveDemo() {
 		std::cout << "\n--- 浅いコピーの危険性実証: originalを変更 ---" << std::endl;
 		std::cout << BOLD_GREEN_COLOR << "Executing: originalDog.getBrain().setIdea(0, \"Sleep all day\");" << RESET_COLOR << std::endl;
 		originalDog.getBrain().setIdea(0, "Sleep all day");
-		std::cout << std::endl;
 
 		std::cout << BOLD_GREEN_COLOR << "Executing: originalDog.getBrain().setIdea(3, \"Dream about food\");" << RESET_COLOR << std::endl;
 		originalDog.getBrain().setIdea(3, "Dream about food");
@@ -80,9 +79,12 @@ void testWrongComprehensiveDemo() {
 		std::cout << "\n⚠️ 安全対策: レビュー時クラッシュ防止のため以下を実行" << std::endl;
 		std::cout << "copiedDog のbrainポインタをNULLに設定してdouble delete回避" << std::endl;
 		
-		// 安全対策: レビュアーの合意なしにクラッシュしないよう、片方のポインタをNULLに設定
-		// これによりdouble deleteを防ぐ（本来の危険性は上記で実証済み）
-		copiedDog.nullifyBrainForSafety();  // 片方をNULLに（double delete防止）
+        // Safety measure: Set one pointer to NULL to prevent crashes without reviewer consensus
+        // This prevents double delete (the inherent danger has already been demonstrated above)
+		std::cout << BOLD_GREEN_COLOR << "Executing: copiedDog.nullifyBrainForSafety();  // Set one to NULL (to prevent double delete)" << RESET_COLOR << std::endl;
+
+		copiedDog.nullifyBrainForSafety();  // Set one to NULL (to prevent double delete)
+		
 		
 		std::cout << "✅ Double delete回避完了。実際の危険性は上記で実証済み。" << std::endl;
 		std::cout << "📝 レビュアー注記: 実際のdouble deleteクラッシュを見る場合は、" << std::endl;
@@ -98,11 +100,9 @@ void testWrongComprehensiveDemo() {
 
 		std::cout << BOLD_GREEN_COLOR << "Executing: originalCat.getBrain().setIdea(0, \"Hunt mice\");" << RESET_COLOR << std::endl;
 		originalCat.getBrain().setIdea(0, "Hunt mice");
-		std::cout << std::endl;
 
 		std::cout << BOLD_GREEN_COLOR << "Executing: originalCat.getBrain().setIdea(1, \"Nap in sunlight\");" << RESET_COLOR << std::endl;
 		originalCat.getBrain().setIdea(1, "Nap in sunlight");
-		std::cout << std::endl;
 
 		std::cout << "\nOriginal cat's brain address: " << &originalCat.getBrain() << std::endl;
 		std::cout << "Original cat ideas:" << std::endl;

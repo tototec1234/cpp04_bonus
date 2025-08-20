@@ -55,8 +55,8 @@ int main() {
 					testShallowCopyProblem();
 					break;
 				case 5:
-					// testWrongShallowCopy();	// 旧関数：統合により廃止
-					testWrongComprehensiveDemo();	// 新関数：包括的設計欠陥実証
+					// testWrongShallowCopy();	//
+					testWrongComprehensiveDemo();
 					break;
 				case 6:
 					testAssignmentOperator();
