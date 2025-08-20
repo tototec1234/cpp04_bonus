@@ -78,9 +78,9 @@ int main() {
 void testCorrectPolymorphism() {
 	std::cout << GREEN_COLOR << "=== Testing Correct Polymorphism ===" << RESET_COLOR << std::endl;
 
-	const Animal* meta = nullptr;
-	const Animal* j = nullptr;
-	const Animal* i = nullptr;
+	const Animal* meta = NULL;
+	const Animal* j = NULL;
+	const Animal* i = NULL;
 
 	try {
 		meta = new Animal();
@@ -121,7 +121,7 @@ void testPolymorphicInstantiationProblems() {
 	std::cout << MAGENTA_COLOR << "=== Testing Polymorphic Instantiation Problems ===" << RESET_COLOR << std::endl;
 	std::cout << YELLOW_COLOR << "基底クラスポインタ経由のインスタンス化 (virtualキーワードなし)" << RESET_COLOR << std::endl;
 
-	const WrongAnimal* wrongCat = nullptr;
+	const WrongAnimal* wrongCat = NULL;
 
 	try {
 		// Attempt at polymorphic instantiation (using base class pointer)
@@ -154,7 +154,7 @@ void testInheritanceBasedInstantiation() {
 	std::cout << GREEN_COLOR << "=== Testing Inheritance-based Instantiation ===" << RESET_COLOR << std::endl;
 	std::cout << YELLOW_COLOR << "具象型ポインタによる直接的インスタンス化 (CPP03スタイル)" << RESET_COLOR << std::endl;
 
-	const WrongCat* wrongCat = nullptr;
+	const WrongCat* wrongCat = NULL;
 
 	try {
 		// Inheritance-based instantiation (using concrete type pointer)
@@ -190,7 +190,7 @@ void testVirtualDestructorImportance() {
 
 	std::cout << "\n----- 正しい多態性での破棄 (virtualデストラクタあり) -----" << std::endl;
 	{
-		const Animal* correctAnimal = nullptr;
+		const Animal* correctAnimal = NULL;
 		try {
 			correctAnimal = new Cat();
 			std::cout << "Type: " << correctAnimal->getType() << std::endl;
@@ -210,7 +210,7 @@ void testVirtualDestructorImportance() {
 
 	std::cout << "\n----- 間違った多態性での破棄 (非virtualデストラクタ) -----" << std::endl;
 	{
-		const WrongAnimal* wrongAnimal = nullptr;
+		const WrongAnimal* wrongAnimal = NULL;
 		try {
 			wrongAnimal = new WrongCat();
 			std::cout << "Type: " << wrongAnimal->getType() << std::endl;
