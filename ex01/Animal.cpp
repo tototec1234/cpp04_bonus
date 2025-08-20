@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 14:44:54 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 15:03:59 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,22 @@ Animal::Animal(const std::string &animalType) : type(animalType)
 	std::cout << "type: " << type << ", this: " << this << std::endl;
 }
 
+Animal::Animal(const Animal &other) : type(other.type)
+{
+	std::cout << BLUE_COLOR << "Animal copy constructor called" << RESET_COLOR << std::endl;
+	std::cout << "type: " << type << ", this: " << this << std::endl;
+}
 
+Animal &Animal::operator=(const Animal &other)
+{
+	std::cout << BLUE_COLOR << "Animal assignment operator called" << RESET_COLOR << std::endl;
+	if (this != &other)
+	{
+		this->type = other.type;
+	}
+	std::cout << "type: " << type << ", this: " << this << std::endl;
+	return *this;
+}
 
 Animal::~Animal()
 {

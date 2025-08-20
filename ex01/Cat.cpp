@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 14:54:45 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 14:59:33 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ void Cat::makeSound() const {
 Brain* Cat::getBrain() const {
 	return this->brain;
 }
-cd
