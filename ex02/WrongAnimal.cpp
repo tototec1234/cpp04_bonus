@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/19 12:19:46 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 14:51:22 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ WrongAnimal::WrongAnimal(const WrongAnimal &other) : type(other.type) {
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other) {
 	std::cout << MAGENTA_COLOR << "WrongAnimal assignment operator called this: " << this << RESET_COLOR << std::endl;
 	if (this != &other) {
-	    this->type = other.type;
+		this->type = other.type;
 	}
 	return *this;
 }

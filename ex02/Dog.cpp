@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/17 17:42:18 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 14:51:04 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ Dog::Dog(const Dog &other) : Animal(other) {
 Dog &Dog::operator=(const Dog &other) {
 	std::cout << GREEN_COLOR << "Dog assignment operator called          this: " << this << RESET_COLOR << std::endl;
 	if (this != &other) {
-	    Animal::operator=(other);
-	    delete this->brain;
-	    this->brain = new Brain(*other.brain);  // Deep copy
+		Animal::operator=(other);
+		delete this->brain;
+		this->brain = new Brain(*other.brain);  // Deep copy
 	}
 	return *this;
 }
