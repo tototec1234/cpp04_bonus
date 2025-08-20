@@ -37,8 +37,7 @@ int main() {
 
 	while (running) {
 		std::cout << "\n\033[33m=== CPP04 Exercise 02 Abstract class. ===\033[0m" << std::endl;
-		std::cout << "=== CPP04 演習02 テストメニュー ===" << std::endl;
-		std::cout << "1: Test Basic Animal Array Functionality                    基本的な動物配列機能テスト" << std::endl;
+		std::cout << "1: Test Basic Animal Array Functionality                    Animal[] でPolymorphism機能テスト" << std::endl;
 		std::cout << "2: Test Deep Copy (Copy Constructor)                        ディープコピーテスト（コピーコンストラクタ）" << std::endl;
 		std::cout << "3: Test Deep Copy (Assignment Operator)                     代入演算子テスト" << std::endl;
 		std::cout << "4: Test Abstract Class (ex02 Feature)                       抽象クラステスト（ex02機能）" << std::endl;
@@ -57,6 +56,7 @@ int main() {
 		}
 
 		try {
+				std::cout << std::endl;
 			switch (choice) {
 				case 1:
 					testBasicFunctionality();
@@ -95,7 +95,7 @@ int main() {
 }
 
 void testBasicFunctionality() {
-	std::cout << "\033[32m=== Testing Basic Animal Array Functionality ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 1: Testing Basic Animal Array Functionality ===\033[0m" << std::endl;
 
 	const int ARRAY_SIZE = 4;
 	Animal* animals[ARRAY_SIZE];
@@ -151,7 +151,7 @@ void testBasicFunctionality() {
 }
 
 void testDeepCopy() {
-	std::cout << "\033[32m=== Testing Deep Copy (Copy Constructor) ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 2: Testing Deep Copy (Copy Constructor) ===\033[0m" << std::endl;
 
 	std::cout << "\n----- Testing Dog Deep Copy -----" << std::endl;
 	{
@@ -212,7 +212,7 @@ void testDeepCopy() {
 }
 
 void testAssignmentOperator() {
-	std::cout << "\033[32m=== Testing Deep Copy (Assignment Operator) ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 3: Testing Deep Copy (Assignment Operator) ===\033[0m" << std::endl;
 
 	std::cout << "\n----- Testing Dog Assignment Operator -----" << std::endl;
 	{
@@ -255,7 +255,7 @@ void testAssignmentOperator() {
 		std::cout << "\n✅ Dog assignment operator deep copy verified" << std::endl;
 	}
 
-	std::cout << "\n----- Testing Cat Assignment Operator -----" << std::endl;
+	std::cout << "\n-----  Testing Cat Assignment Operator -----" << std::endl;
 	{
 		Cat cat1;
 		Cat cat2;
@@ -298,7 +298,7 @@ void testAssignmentOperator() {
 }
 
 void testAbstractClass() {
-	std::cout << "\033[32m=== Testing Abstract Class (ex02 Feature) ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 4: Testing Abstract Class (ex02 Feature) ===\033[0m" << std::endl;
 	std::cout << "ex02の学習目標: Abstract classによりAnimalの直接インスタンス化を禁止" << std::endl;
 
 	std::cout << "\n----- 抽象クラスとは -----" << std::endl;
@@ -365,7 +365,7 @@ void testAbstractClass() {
 }
 
 void testVirtualDestructorWithBrain() {
-	std::cout << "\033[32m=== Demonstrating Virtual Destructor Importance with Brain ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 5: Demonstrating Virtual Destructor Importance with Brain ===\033[0m" << std::endl;
 	std::cout << "注意: この例では、virtual destructorがなかった場合のメモリリークリスクを説明します" << std::endl;
 
 	std::cout << "\n----- Correct usage with virtual destructor -----" << std::endl;
@@ -395,7 +395,7 @@ void demonstratePolymorphism(Animal* animal) {
 }
 
 void testPolymorphismUseCases() {
-	std::cout << "\033[32m=== Polymorphism Use Case Examples ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 6: Polymorphism Use Case Examples ===\033[0m" << std::endl;
 	std::cout << "ex02の核心: 抽象クラスによる多態性の実用例" << std::endl;
 
 	std::cout << "\n----- 多態性の基本概念 -----" << std::endl;
@@ -464,7 +464,7 @@ void testPolymorphismUseCases() {
 }
 
 void testExceptionHandling() {
-	std::cout << "\033[32m=== Testing Exception Handling (CPP04 Enhancement) ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 7: Testing Exception Handling (CPP04 Enhancement) ===\033[0m" << std::endl;
 
 	std::cout << "\n----- Testing Brain Array Bounds Checking -----" << std::endl;
 	try {
@@ -473,8 +473,8 @@ void testExceptionHandling() {
 		dog.getBrain()->setIdea(0, "Valid idea");
 		std::cout << "Retrieved idea: \"" << dog.getBrain()->getIdea(0) << "\"" << std::endl;
 
-		std::cout << "\n⚠️ Attempting to set idea at invalid index 100:" << std::endl;
-		dog.getBrain()->setIdea(100, "Invalid index idea");
+		std::cout << "\n⚠️ Attempting to set idea at invalid index 9999:" << std::endl;
+		dog.getBrain()->setIdea(9999, "Invalid index idea");
 	} catch (const std::out_of_range &e) {
 		std::cout << "✅ Exception caught: " << e.what() << std::endl;
 	}
@@ -513,3 +513,10 @@ void testExceptionHandling() {
 	std::cout << "・メモリ割り当て失敗 → std::bad_alloc例外の適切な処理" << std::endl;
 	std::cout << "・ユーザー入力検証 → 無効な入力の安全な処理" << std::endl;
 }
+
+/*
+valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./brain_test
+
+valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./brain_test > VALGLIND.log 2>&1
+
+*/
