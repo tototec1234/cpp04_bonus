@@ -7,6 +7,7 @@ SRCS = 	main.cpp \
 	test_deep_copy.cpp \
 	test_virtual.cpp \
 	test_shallow_copy.cpp \
+	test_wrong_comprehensive_demo.cpp \
 	test_assignment.cpp \
 	test_exception.cpp \
 	Animal.cpp \
@@ -18,7 +19,7 @@ SRCS = 	main.cpp \
 	WrongDog.cpp \
 	WrongBrain.cpp
 
-# Removed for review time constraints: test_wrong_comprehensive_demo.cpp
+# test_wrong_copy.cpp → test_wrong_comprehensive_demo.cpp
 
 MAKE = make
 OBJS = $(SRCS:.cpp=.o)
