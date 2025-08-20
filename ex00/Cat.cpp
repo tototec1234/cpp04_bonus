@@ -19,8 +19,6 @@ Cat::Cat() : Animal("Cat")
 	std::cout << "type: " << type << ", this: " << this << std::endl;
 }
 
-
-
 Cat::~Cat()
 {
 	std::cout << MAGENTA_COLOR << "Cat destructor called" << RESET_COLOR << std::endl;

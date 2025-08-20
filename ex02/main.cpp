@@ -329,7 +329,7 @@ void testAbstractClass() {
 
 	std::cout << "\n----- WrongAnimalとの違い: 普通のクラスの動作確認 -----" << std::endl;
 	std::cout << "WrongAnimal wrongAnimal;  // ✅ OK: 普通のクラスはインスタンス化可能" << std::endl;
-	// WrongAnimal wrongAnimal;  // コメントアウト（実際の宣言は避ける）
+	// WrongAnimal wrongAnimal;  //
 	std::cout << "WrongAnimal* wrongPtr = new WrongAnimal();  // ✅ OK" << std::endl;
 	// WrongAnimal* wrongPtr = new WrongAnimal(); 
 	// delete wrongPtr;
@@ -338,16 +338,17 @@ void testAbstractClass() {
 	std::cout << "\n----- 正常動作: 派生クラス経由でのアクセス -----" << std::endl;
 	std::cout << "Animal*ポインタとして派生クラスを扱うことは可能:" << std::endl;
 
-	Animal* dogPtr = new Dog();    // ✅ OK: Dogオブジェクトを作成してAnimal*で受ける
-	Animal* catPtr = new Cat();    // ✅ OK: Catオブジェクトを作成してAnimal*で受ける
+	
+	Animal* dogPtr = new Dog();		// OK: Create a Dog object and assign it to an Animal pointer
+	Animal* catPtr = new Cat();		// OK: Create a Cat object and assign it to an Animal pointer
 
 	std::cout << "\nDog via Animal* pointer:" << std::endl;
 	std::cout << "Type: " << dogPtr->getType() << std::endl;
-	dogPtr->makeSound();  // Dog::makeSound()が呼ばれる（多態性）
+	dogPtr->makeSound();  // Dog::makeSound() is called (polymorphism)
 
 	std::cout << "\nCat via Animal* pointer:" << std::endl;
 	std::cout << "Type: " << catPtr->getType() << std::endl;
-	catPtr->makeSound();  // Cat::makeSound()が呼ばれる（多態性）
+	catPtr->makeSound();  // Cat::makeSound() is called (polymorphism)
 
 	delete dogPtr;
 	delete catPtr;
@@ -455,8 +456,6 @@ void testPolymorphismUseCases() {
 	std::cout << "・抽象クラスにより意味のないAnimalインスタンス化を防止" << std::endl;
 	std::cout << "・コードの再利用性・保守性が大幅向上" << std::endl;
 
-
-	// クリーンアップ
 	delete animal1;
 	delete animal2;
 	for (int i = 0; i < 3; i++) {

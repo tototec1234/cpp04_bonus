@@ -27,7 +27,7 @@ WrongCat &WrongCat::operator=(const WrongCat &other) {
 	std::cout << MAGENTA_COLOR << "WrongCat assignment operator called    this: " << this << RESET_COLOR << std::endl;
 	if (this != &other) {
 		WrongAnimal::operator=(other);
-		// 🔴 Exception-unsafe: Delete old brain first (bad implementation example different from Cat class)
+		// Exception-unsafe: Delete old brain first (bad implementation example different from Cat class)
 		delete this->brain;  // Delete first
 		this->brain = new WrongBrain(*other.brain);  // If this fails, brain=nullptr!
 	}

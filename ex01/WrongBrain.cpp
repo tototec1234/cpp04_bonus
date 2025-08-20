@@ -62,7 +62,7 @@ std::string WrongBrain::getIdea(int index) const {
 
 void WrongBrain::printIdeas() const {
 	std::cout << "WrongBrain ideas:" << std::endl;
-	for (int i = 0; i < 5; i++) {  // Print first 5 ideas
+	for (int i = 0; i < 5; i++) {
 		if (!ideas[i].empty()) {
 			std::cout << "  [" << i << ":" << &ideas[i] << "]: " << ideas[i] << std::endl;
 		}

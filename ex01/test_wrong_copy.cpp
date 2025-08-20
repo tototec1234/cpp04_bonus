@@ -35,7 +35,7 @@ void testWrongShallowCopy() {
 
 		std::cout << "\n--- Creating copy using copy constructor ---" << std::endl;
 		std::cout << BOLD_GREEN_COLOR << "Executing: WrongDog copiedDog = originalDog;  // ⚠️ SHALLOW COPY!" << RESET_COLOR << std::endl;
-		WrongDog copiedDog = originalDog;  // ⚠️ Shallow copy!
+		WrongDog copiedDog = originalDog;  // CAUTION Shallow copy!
 
 		std::cout << "\nCopied dog's brain address: " << &copiedDog.getBrain() << std::endl;
 		

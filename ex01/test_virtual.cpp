@@ -41,7 +41,7 @@ void testVirtualPolymorphismProblem() {
 		std::cout << BOLD_GREEN_COLOR << "Executing: wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound()が呼ばれる" << RESET_COLOR << std::endl;
 		wrongAnimal->makeSound();
 		std::cout << BOLD_GREEN_COLOR << "Executing: delete wrongAnimal; // ⚠️ メモリリークも発生" << RESET_COLOR << std::endl;
-		delete wrongAnimal;  // ⚠️ Memory leak also occurs
+		delete wrongAnimal;  // CAUTION Memory leak also occurs
 		std::cout << "❌ 問題：WrongAnimalの鳴き声（WrongCatではない）\n" << std::endl;
 	}
 
@@ -51,7 +51,7 @@ void testVirtualPolymorphismProblem() {
 		std::cout << BOLD_GREEN_COLOR << "Executing: wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound()が呼ばれる" << RESET_COLOR << std::endl;
 		wrongAnimal->makeSound();
 		std::cout << BOLD_GREEN_COLOR << "Executing: delete wrongAnimal; // ⚠️ メモリリークも発生" << RESET_COLOR << std::endl;
-		delete wrongAnimal;  // ⚠️ Memory leak also occurs
+		delete wrongAnimal;  /// CAUTION Memory leak also occurs
 		std::cout << "❌ 問題：WrongAnimalの鳴き声（WrongDogではない）\n" << std::endl;
 	}
 

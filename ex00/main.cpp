@@ -135,7 +135,7 @@ void testPolymorphicInstantiationProblems() {
 		std::cout << "\n----- 問題: 静的バインディングにより基底クラスのメソッドが呼ばれる -----" << std::endl;
 		std::cout << std::endl;
 
-		wrongCat->makeSound();  // WrongAnimalのmakeSound()が呼ばれる（問題！）
+		wrongCat->makeSound();
 
 		std::cout << "\n----- Destroying WrongCat -----" << std::endl;
 		std::cout << std::endl;
@@ -168,7 +168,7 @@ void testInheritanceBasedInstantiation() {
 		std::cout << "\n----- 期待通り: 派生クラスのメソッドが呼ばれる -----" << std::endl;
 		std::cout << std::endl;
 
-		wrongCat->makeSound();  // WrongCatのmakeSound()が呼ばれる（正常）
+		wrongCat->makeSound();
 
 		std::cout << "\n----- Destroying WrongCat -----" << std::endl;
 		std::cout << std::endl;
@@ -196,7 +196,7 @@ void testVirtualDestructorImportance() {
 			std::cout << "Type: " << correctAnimal->getType() << std::endl;
 			correctAnimal->makeSound();
 			std::cout << "\n破棄時: virtualデストラクタにより適切な順序で呼ばれます" << std::endl;
-			delete correctAnimal;  // Cat → Animal の順で適切に破棄される
+			delete correctAnimal;
 			std::cout << std::endl;
 			std::cout << std::endl;
 		} catch (const std::bad_alloc &e) {
@@ -216,7 +216,7 @@ void testVirtualDestructorImportance() {
 			std::cout << "Type: " << wrongAnimal->getType() << std::endl;
 			wrongAnimal->makeSound();
 			std::cout << "\n破棄時: 非virtualデストラクタのため問題が発生します" << std::endl;
-			delete wrongAnimal;  // WrongCatのデストラクタが呼ばれない！
+			delete wrongAnimal;
 			std::cout << std::endl;
 		} catch (const std::bad_alloc &e) {
 			std::cout << "⚠️ Memory allocation failed: " << e.what() << std::endl;
@@ -234,3 +234,8 @@ void testVirtualDestructorImportance() {
 	std::cout << "• virtualキーワードは「実質的な」機能を提供し、適切な多態性を実現します" << std::endl;
 	std::cout << std::endl;
 }
+
+/*
+valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./polymorphism
+
+*/
