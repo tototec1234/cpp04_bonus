@@ -88,7 +88,9 @@ void testCorrectPolymorphism() {
 		j = new Dog();
 		std::cout << std::endl;
 		i = new Cat();
+		std::cout << std::endl;
 
+		std::cout << meta->getType() << " " << std::endl;
 		std::cout << j->getType() << " " << std::endl;
 		std::cout << i->getType() << " " << std::endl;
 
@@ -121,10 +123,13 @@ void testPolymorphicInstantiationProblems() {
 	std::cout << MAGENTA_COLOR << "=== Testing Polymorphic Instantiation Problems ===" << RESET_COLOR << std::endl;
 	std::cout << YELLOW_COLOR << "基底クラスポインタ経由のインスタンス化 (virtualキーワードなし)" << RESET_COLOR << std::endl;
 
+	std::cout << BOLD_GREEN_COLOR << "Executing:		const WrongAnimal* wrongCat = NULL;" << RESET_COLOR << std::endl;
 	const WrongAnimal* wrongCat = NULL;
 
 	try {
 		// Attempt at polymorphic instantiation (using base class pointer)
+		std::cout << BOLD_GREEN_COLOR << "Executing: 		wrongCat = new WrongCat();" << RESET_COLOR << std::endl;
+
 		wrongCat = new WrongCat();
 		std::cout << std::endl;
 
@@ -154,10 +159,14 @@ void testInheritanceBasedInstantiation() {
 	std::cout << GREEN_COLOR << "=== Testing Inheritance-based Instantiation ===" << RESET_COLOR << std::endl;
 	std::cout << YELLOW_COLOR << "具象型ポインタによる直接的インスタンス化 (CPP03スタイル)" << RESET_COLOR << std::endl;
 
+	std::cout << BOLD_GREEN_COLOR << "Executing:		const WrongCat* wrongCat = NULL;" << RESET_COLOR << std::endl;
+
 	const WrongCat* wrongCat = NULL;
 
 	try {
 		// Inheritance-based instantiation (using concrete type pointer)
+		std::cout << BOLD_GREEN_COLOR << "Executing: 		wrongCat = new WrongCat();" << RESET_COLOR << std::endl;
+
 		wrongCat = new WrongCat();
 		std::cout << std::endl;
 
@@ -190,8 +199,12 @@ void testVirtualDestructorImportance() {
 
 	std::cout << "\n----- 正しい多態性での破棄 (virtualデストラクタあり) -----" << std::endl;
 	{
+		std::cout << BOLD_GREEN_COLOR << "Executing: 		const Animal* correctAnimal = NULL;" << RESET_COLOR << std::endl;
+
 		const Animal* correctAnimal = NULL;
 		try {
+			std::cout << BOLD_GREEN_COLOR << "Executing: 		correctAnimal = new Cat();" << RESET_COLOR << std::endl;
+
 			correctAnimal = new Cat();
 			std::cout << "Type: " << correctAnimal->getType() << std::endl;
 			correctAnimal->makeSound();
@@ -210,8 +223,12 @@ void testVirtualDestructorImportance() {
 
 	std::cout << "\n----- 間違った多態性での破棄 (非virtualデストラクタ) -----" << std::endl;
 	{
+		std::cout << BOLD_GREEN_COLOR << "Executing: 		const WrongAnimal* wrongAnimal = NULL;" << RESET_COLOR << std::endl;
+
 		const WrongAnimal* wrongAnimal = NULL;
 		try {
+			std::cout << BOLD_GREEN_COLOR << "Executing: 		wrongAnimal = new WrongCat();" << RESET_COLOR << std::endl;
+
 			wrongAnimal = new WrongCat();
 			std::cout << "Type: " << wrongAnimal->getType() << std::endl;
 			wrongAnimal->makeSound();
