@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 22:00:00 by toruinoue        #+#    #+#             */
-/*   Updated: 2025/01/27 22:00:00 by toruinoue        ###   ########.fr       */
+/*   Created: 2025/08/20 18:20:39 by toruinoue         #+#    #+#             */
+/*   Updated: 2025/08/20 18:20:43 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "Dog.hpp"
 #include "Cat.hpp"
