@@ -6,18 +6,20 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/17 17:34:06 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 08:50:19 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include <limits>
 
 void testBasicFunctionality();
 void testDeepCopy();
 void testAssignmentOperator();
 void testVirtualDestructorWithBrain();
+void testExceptionHandling();
 int main() {
 	int choice;
 	bool running = true;
@@ -29,28 +31,44 @@ int main() {
 	    std::cout << "2: Deep Copy Test                                          ディープコピーテスト" << std::endl;
 	    std::cout << "3: Assignment Operator Test                                代入演算子テスト" << std::endl;
 	    std::cout << "4: Virtual Destructor Importance Test                      仮想デストラクタの重要性テスト" << std::endl;
+	    std::cout << "5: Exception Handling Test                                 例外処理テスト" << std::endl;
 	    std::cout << "0: Exit                                                    終了" << std::endl;
 	    std::cout << "Please select an option / 選択してください: ";
-	    std::cin >> choice;
+	    
+	    // Exception-safe input handling
+	    if (!(std::cin >> choice)) {
+	        std::cout << "⚠️ Invalid input! Please enter a number. / 無効な入力です！数字を入力してください。" << std::endl;
+	        std::cin.clear();  // Clear error flag
+	        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear input buffer
+	        continue;
+	    }
 
-	    switch (choice) {
-	        case 1:
-	            testBasicFunctionality();
-	            break;
-	        case 2:
-	            testDeepCopy();
-	            break;
-	        case 3:
-	            testAssignmentOperator();
-	            break;
-	        case 4:
-	            testVirtualDestructorWithBrain();
-	            break;
-	        case 0:
-	            running = false;
-	            break;
-	        default:
-	            std::cout << "Invalid selection. Please try again. / 無効な選択です。もう一度試してください。" << std::endl;
+	    try {
+	        switch (choice) {
+	            case 1:
+	                testBasicFunctionality();
+	                break;
+	            case 2:
+	                testDeepCopy();
+	                break;
+	            case 3:
+	                testAssignmentOperator();
+	                break;
+	            case 4:
+	                testVirtualDestructorWithBrain();
+	                break;
+	            case 5:
+	                testExceptionHandling();
+	                break;
+	            case 0:
+	                running = false;
+	                break;
+	            default:
+	                std::cout << "Invalid selection. Please try again. / 無効な選択です。もう一度試してください。" << std::endl;
+	        }
+	    } catch (const std::exception &e) {
+	        std::cout << "⚠️ Exception caught: " << e.what() << std::endl;
+	        std::cout << "Test continued... / テストを継続します..." << std::endl;
 	    }
 	}
 
@@ -62,19 +80,37 @@ void testBasicFunctionality() {
 
 	const int ARRAY_SIZE = 4;
 	Animal* animals[ARRAY_SIZE];
+	int created = 0;  // Track number of successfully created animals
 
 	std::cout << "\n----- Creating Animal Array (half Dogs, half Cats) -----" << std::endl;
-	// Fill half with dogs, half with cats
-	for (int i = 0; i < ARRAY_SIZE / 2; i++) {
-	    std::cout << "Creating Dog[" << i << "]:" << std::endl;
-	    animals[i] = new Dog();
-	    std::cout << std::endl;
-	}
+	try {
+	    // Fill half with dogs, half with cats
+	    for (int i = 0; i < ARRAY_SIZE / 2; i++) {
+	        std::cout << "Creating Dog[" << i << "]:" << std::endl;
+	        animals[i] = new Dog();
+	        created++;
+	        std::cout << std::endl;
+	    }
 
-	for (int i = ARRAY_SIZE / 2; i < ARRAY_SIZE; i++) {
-	    std::cout << "Creating Cat[" << i << "]:" << std::endl;
-	    animals[i] = new Cat();
-	    std::cout << std::endl;
+	    for (int i = ARRAY_SIZE / 2; i < ARRAY_SIZE; i++) {
+	        std::cout << "Creating Cat[" << i << "]:" << std::endl;
+	        animals[i] = new Cat();
+	        created++;
+	        std::cout << std::endl;
+	    }
+	} catch (const std::bad_alloc &e) {
+	    std::cout << "⚠️ Memory allocation failed: " << e.what() << std::endl;
+	    std::cout << "Cleaning up already created animals..." << std::endl;
+	    for (int i = 0; i < created; i++) {
+	        delete animals[i];
+	    }
+	    return;
+	} catch (const std::exception &e) {
+	    std::cout << "⚠️ Exception during creation: " << e.what() << std::endl;
+	    for (int i = 0; i < created; i++) {
+	        delete animals[i];
+	    }
+	    return;
 	}
 
 	std::cout << "\n----- Testing Polymorphic Behavior -----" << std::endl;
@@ -84,10 +120,14 @@ void testBasicFunctionality() {
 	}
 
 	std::cout << "\n----- Destroying Animals (virtual destructor ensures proper cleanup) -----" << std::endl;
-	for (int i = 0; i < ARRAY_SIZE; i++) {
-	    std::cout << "Deleting Animal[" << i << "]:" << std::endl;
-	    delete animals[i];
-	    std::cout << std::endl;
+	try {
+	    for (int i = 0; i < ARRAY_SIZE; i++) {
+	        std::cout << "Deleting Animal[" << i << "]:" << std::endl;
+	        delete animals[i];
+	        std::cout << std::endl;
+	    }
+	} catch (const std::exception &e) {
+	    std::cout << "⚠️ Exception during destruction: " << e.what() << std::endl;
 	}
 }
 
@@ -260,4 +300,55 @@ void testVirtualDestructorWithBrain() {
 	std::cout << "・virtualデストラクタ: 適切な多態性での破棄" << std::endl;
 	std::cout << "・深いコピー: 独立したBrainオブジェクトの管理" << std::endl;
 	std::cout << "・リソース管理: new/deleteのペア、RAII原則" << std::endl;
+}
+
+void testExceptionHandling() {
+	std::cout << "\033[32m=== Testing Exception Handling (CPP04 Enhancement) ===\033[0m" << std::endl;
+
+	std::cout << "\n----- Testing Brain Array Bounds Checking -----" << std::endl;
+	try {
+	    Dog dog;
+	    std::cout << "✅ Setting valid idea at index 0:" << std::endl;
+	    dog.getBrain()->setIdea(0, "Valid idea");
+	    std::cout << "Retrieved idea: \"" << dog.getBrain()->getIdea(0) << "\"" << std::endl;
+
+	    std::cout << "\n⚠️ Attempting to set idea at invalid index 100:" << std::endl;
+	    dog.getBrain()->setIdea(100, "Invalid index idea");
+	} catch (const std::out_of_range &e) {
+	    std::cout << "✅ Exception caught: " << e.what() << std::endl;
+	}
+
+	try {
+	    Dog dog;
+	    std::cout << "\n⚠️ Attempting to get idea at invalid index -1:" << std::endl;
+	    std::string idea = dog.getBrain()->getIdea(-1);
+	} catch (const std::out_of_range &e) {
+	    std::cout << "✅ Exception caught: " << e.what() << std::endl;
+	}
+
+	std::cout << "\n----- Testing Exception Safety in Assignment Operator -----" << std::endl;
+	try {
+	    Cat cat1, cat2;
+	    cat1.getBrain()->setIdea(0, "Original cat idea");
+	    cat1.getBrain()->setIdea(1, "Another idea");
+
+	    std::cout << "Cat1 brain address before assignment: " << cat1.getBrain() << std::endl;
+	    std::cout << "Cat2 brain address before assignment: " << cat2.getBrain() << std::endl;
+
+	    cat2 = cat1;  // This should be exception-safe now
+
+	    std::cout << "✅ Assignment completed successfully" << std::endl;
+	    std::cout << "Cat1 brain address after assignment: " << cat1.getBrain() << std::endl;
+	    std::cout << "Cat2 brain address after assignment: " << cat2.getBrain() << std::endl;
+	    std::cout << "Cat2 idea[0]: \"" << cat2.getBrain()->getIdea(0) << "\"" << std::endl;
+
+	} catch (const std::exception &e) {
+	    std::cout << "⚠️ Exception during assignment: " << e.what() << std::endl;
+	}
+
+	std::cout << "\n✅ Exception handling improvements:" << std::endl;
+	std::cout << "・Brain配列範囲外アクセス → std::out_of_range例外" << std::endl;
+	std::cout << "・代入演算子例外安全性 → 新しいオブジェクト作成後に古いものを削除" << std::endl;
+	std::cout << "・メモリ割り当て失敗 → std::bad_alloc例外の適切な処理" << std::endl;
+	std::cout << "・ユーザー入力検証 → 無効な入力の安全な処理" << std::endl;
 }

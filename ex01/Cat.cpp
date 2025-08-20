@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/17 17:32:47 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 08:50:19 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ Cat &Cat::operator=(const Cat &other) {
 	std::cout << YELLOW_COLOR << "Cat assignment operator called          this: " << this << RESET_COLOR << std::endl;
 	if (this != &other) {
 	    Animal::operator=(other);
-	    delete this->brain;
-	    this->brain = new Brain(*other.brain);  // Deep copy
+	    // Exception safety: create new brain first, then delete old one
+	    Brain* newBrain = new Brain(*other.brain);  // Deep copy - may throw
+	    delete this->brain;  // Only delete after successful allocation
+	    this->brain = newBrain;
 	}
 	return *this;
 }

@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/19 12:19:46 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 02:52:10 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Animal::Animal() : type("Animal") {
 }
 
 Animal::Animal(const std::string &animalType) : type(animalType) {
-	std::cout << MAGENTA_COLOR << "Animal parameterized constructor called this: " << this << RESET_COLOR << std::endl;
+	std::cout << MAGENTA_COLOR << "Animal parameterized constructor called  this: " << this << RESET_COLOR << std::endl;
 }
 
 Animal::Animal(const Animal &other) : type(other.type) {
