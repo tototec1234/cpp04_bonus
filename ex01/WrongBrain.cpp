@@ -12,6 +12,7 @@
 
 #include "WrongBrain.hpp"
 #include "AnsiColor.hpp"
+#include <sstream>
 
 WrongBrain::WrongBrain() {
 	std::cout << RED_COLOR << "WrongBrain default constructor called   this: " << this << RESET_COLOR << std::endl;
@@ -43,14 +44,18 @@ WrongBrain::~WrongBrain() {
 
 void WrongBrain::setIdea(int index, const std::string &idea) {
 	if (index < 0 || index >= 100) {
-		throw std::out_of_range("WrongBrain::setIdea: Index out of range (0-99). Given index: " + std::to_string(index));
+		std::stringstream ss;
+		ss << index;
+		throw std::out_of_range("WrongBrain::setIdea: Index out of range (0-99). Given index: " + ss.str());
 	}
 	ideas[index] = idea;
 }
 
 std::string WrongBrain::getIdea(int index) const {
 	if (index < 0 || index >= 100) {
-		throw std::out_of_range("WrongBrain::getIdea: Index out of range (0-99). Given index: " + std::to_string(index));
+		std::stringstream ss;
+		ss << index;
+		throw std::out_of_range("WrongBrain::getIdea: Index out of range (0-99). Given index: " + ss.str());
 	}
 	return ideas[index];
 }

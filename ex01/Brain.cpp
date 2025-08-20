@@ -6,12 +6,13 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 14:47:03 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 19:37:46 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 #include "AnsiColor.hpp"
+#include <sstream>
 
 Brain::Brain() {
 	std::cout << CYAN_COLOR << "Brain default constructor called         this: " << this << RESET_COLOR << std::endl;
@@ -43,14 +44,18 @@ Brain::~Brain() {
 
 void Brain::setIdea(int index, const std::string &idea) {
 	if (index < 0 || index >= 100) {
-		throw std::out_of_range("Brain::setIdea: Index out of range (0-99). Given index: " + std::to_string(index));
+		std::stringstream ss;
+		ss << index;
+		throw std::out_of_range("Brain::setIdea: Index out of range (0-99). Given index: " + ss.str());
 	}
 	ideas[index] = idea;
 }
 
 std::string Brain::getIdea(int index) const {
 	if (index < 0 || index >= 100) {
-		throw std::out_of_range("Brain::getIdea: Index out of range (0-99). Given index: " + std::to_string(index));
+		std::stringstream ss;
+		ss << index;
+		throw std::out_of_range("Brain::getIdea: Index out of range (0-99). Given index: " + ss.str());
 	}
 	return ideas[index];
 }
