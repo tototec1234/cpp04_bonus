@@ -19,7 +19,7 @@ SRCS = 	main.cpp \
 	WrongDog.cpp \
 	WrongBrain.cpp
 
-# 旧ファイル統合により廃止: test_wrong_copy.cpp → test_wrong_comprehensive_demo.cpp
+# test_wrong_copy.cpp → test_wrong_comprehensive_demo.cpp
 
 MAKE = make
 OBJS = $(SRCS:.cpp=.o)

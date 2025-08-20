@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/21 00:12:53 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/21 00:28:06 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ WrongDog &WrongDog::operator=(const WrongDog &other) {
 
 WrongDog::~WrongDog() {
 	std::cout << CYAN_COLOR << "WrongDog destructor called             this: " << this << RESET_COLOR << std::endl;
-	// 安全対策: NULLチェックを追加してdouble delete防止
-	if (this->brain != NULL) {  // 安全対策追加
+	// Safety measure: Add NULL check to prevent double delete
+	if (this->brain != NULL) {  // Safety measure added
 		delete this->brain;
-		this->brain = NULL;  // 二重削除防止
+		this->brain = NULL;  // Prevent double deletion
 	}
 }
 
@@ -54,8 +54,8 @@ WrongBrain& WrongDog::getBrain() const {
 	return *this->brain;
 }
 
-// レビュー時安全対策用メソッド実装
+// Safety method implementation for review
 void WrongDog::nullifyBrainForSafety() {
 	std::cout << CYAN_COLOR << "  🛡️  SAFETY: brainポインタをNULLに設定 (double delete防止)" << RESET_COLOR << std::endl;
-	this->brain = NULL;  // 安全対策: double delete防止のためNULLに設定
+	this->brain = NULL;  // Safety measure: Set to NULL to prevent double delete
 }
