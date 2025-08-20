@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 18:22:39 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/21 00:09:49 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ public:
 
 	void makeSound() const;  // NOT virtual!
 	WrongBrain& getBrain() const;
+	
+	// レビュー時安全対策用メソッド (double delete防止)
+	void nullifyBrainForSafety();  // レビュアー合意なしクラッシュ防止用
 };
 
 #endif
