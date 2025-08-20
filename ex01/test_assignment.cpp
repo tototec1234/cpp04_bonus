@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_assignment.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
+/*   By: torinoue <torinoue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:20:03 by toruinoue         #+#    #+#             */
-/*   Updated: 2025/08/20 18:20:24 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/21 02:42:04 by torinoue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

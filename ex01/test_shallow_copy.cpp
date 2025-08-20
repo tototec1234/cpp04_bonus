@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_shallow_copy.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
+/*   By: torinoue <torinoue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:20:58 by toruinoue         #+#    #+#             */
-/*   Updated: 2025/08/20 22:11:12 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/21 02:42:12 by torinoue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
