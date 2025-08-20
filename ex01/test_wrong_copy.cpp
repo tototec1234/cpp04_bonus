@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:21:16 by toruinoue         #+#    #+#             */
-/*   Updated: 2025/08/20 18:21:23 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 22:11:01 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void testWrongShallowCopy() {
 		originalDog.getBrain().printIdeas();
 
 		std::cout << "\n--- Creating copy using copy constructor ---" << std::endl;
-		std::cout << BOLD_GREEN_COLOR << "Executing: WrongDog copiedDog = originalDog;  // ⚠️ SHALLOW COPY!" << RESET_COLOR << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: WrongDog copiedDog = originalDog;  // CAUTION SHALLOW COPY!" << RESET_COLOR << std::endl;
 		WrongDog copiedDog = originalDog;  // CAUTION Shallow copy!
 
 		std::cout << "\nCopied dog's brain address: " << &copiedDog.getBrain() << std::endl;
@@ -77,7 +77,7 @@ void testWrongShallowCopy() {
 		std::cout << "Original cat ideas:" << std::endl;
 		originalCat.getBrain().printIdeas();
 
-		std::cout << BOLD_GREEN_COLOR << "Executing: WrongCat copiedCat = originalCat;  // Deep copy (正常)" << RESET_COLOR << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: WrongCat copiedCat = originalCat;  // Deep copy (normal)" << RESET_COLOR << std::endl;
 		WrongCat copiedCat = originalCat;  // Deep copy
 
 		std::cout << "\nCopied cat's brain address: " << &copiedCat.getBrain() << std::endl;

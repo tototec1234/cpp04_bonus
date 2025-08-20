@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:21:07 by toruinoue         #+#    #+#             */
-/*   Updated: 2025/08/20 18:36:50 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 22:11:09 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void testVirtualPolymorphismProblem() {
 	{
 		std::cout << BOLD_GREEN_COLOR << "Executing: Animal* animal = new Dog();" << RESET_COLOR << std::endl;
 		Animal* animal = new Dog();
-		std::cout << BOLD_GREEN_COLOR << "Executing: animal->makeSound(); // virtual -> Dog::makeSound()が呼ばれる" << RESET_COLOR << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: animal->makeSound(); // virtual -> Dog::makeSound() is called" << RESET_COLOR << std::endl;
 		animal->makeSound();
 		std::cout << BOLD_GREEN_COLOR << "Executing: delete animal;" << RESET_COLOR << std::endl;
 		delete animal;
@@ -38,9 +38,9 @@ void testVirtualPolymorphismProblem() {
 	{
 		std::cout << BOLD_GREEN_COLOR << "Executing: WrongAnimal* wrongAnimal = new WrongCat();" << RESET_COLOR << std::endl;
 		WrongAnimal* wrongAnimal = new WrongCat();
-		std::cout << BOLD_GREEN_COLOR << "Executing: wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound()が呼ばれる" << RESET_COLOR << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound() is called" << RESET_COLOR << std::endl;
 		wrongAnimal->makeSound();
-		std::cout << BOLD_GREEN_COLOR << "Executing: delete wrongAnimal; // ⚠️ メモリリークも発生" << RESET_COLOR << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: delete wrongAnimal; // CAUTION Memory leak also occurs" << RESET_COLOR << std::endl;
 		delete wrongAnimal;  // CAUTION Memory leak also occurs
 		std::cout << "❌ 問題：WrongAnimalの鳴き声（WrongCatではない）\n" << std::endl;
 	}
@@ -48,9 +48,9 @@ void testVirtualPolymorphismProblem() {
 	{
 		std::cout << BOLD_GREEN_COLOR << "Executing: WrongAnimal* wrongAnimal = new WrongDog();" << RESET_COLOR << std::endl;
 		WrongAnimal* wrongAnimal = new WrongDog();
-		std::cout << BOLD_GREEN_COLOR << "Executing: wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound()が呼ばれる" << RESET_COLOR << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: wrongAnimal->makeSound(); // NOT virtual -> WrongAnimal::makeSound() is called" << RESET_COLOR << std::endl;
 		wrongAnimal->makeSound();
-		std::cout << BOLD_GREEN_COLOR << "Executing: delete wrongAnimal; // ⚠️ メモリリークも発生" << RESET_COLOR << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: delete wrongAnimal; // CAUTION Memory leak also occurs" << RESET_COLOR << std::endl;
 		delete wrongAnimal;  /// CAUTION Memory leak also occurs
 		std::cout << "❌ 問題：WrongAnimalの鳴き声（WrongDogではない）\n" << std::endl;
 	}

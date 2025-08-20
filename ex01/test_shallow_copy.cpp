@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:20:58 by toruinoue         #+#    #+#             */
-/*   Updated: 2025/08/20 18:36:50 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 22:11:12 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void testShallowCopyProblem() {
 		
 		std::cout << "WrongDog1 brain address: " << &dog1.getBrain() << std::endl;
 		
-		std::cout << BOLD_GREEN_COLOR << "Executing: WrongDog dog2(dog1);  // ⚠️ Shallow copy!" << RESET_COLOR << std::endl;
-		WrongDog dog2(dog1);  // ⚠️ Shallow copy!
+		std::cout << BOLD_GREEN_COLOR << "Executing: WrongDog dog2(dog1);  // CAUTION Shallow copy!" << RESET_COLOR << std::endl;
+		WrongDog dog2(dog1);  // CAUTION Shallow copy!
 		std::cout << "WrongDog2 brain address: " << &dog2.getBrain() << std::endl;
 		
 		if (&dog1.getBrain() == &dog2.getBrain()) {

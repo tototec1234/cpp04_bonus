@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 18:36:50 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 22:11:20 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,9 +328,9 @@ void testAbstractClass() {
 	*/
 
 	std::cout << "\n----- WrongAnimalとの違い: 普通のクラスの動作確認 -----" << std::endl;
-	std::cout << "WrongAnimal wrongAnimal;  // ✅ OK: 普通のクラスはインスタンス化可能" << std::endl;
+	std::cout << "WrongAnimal wrongAnimal;  // OK: Normal classes can be instantiated" << std::endl;
 	// WrongAnimal wrongAnimal;  //
-	std::cout << "WrongAnimal* wrongPtr = new WrongAnimal();  // ✅ OK" << std::endl;
+	std::cout << "WrongAnimal* wrongPtr = new WrongAnimal();  // OK" << std::endl;
 	// WrongAnimal* wrongPtr = new WrongAnimal(); 
 	// delete wrongPtr;
 	std::cout << "→ WrongAnimalは普通のクラスなので直接インスタンス化可能" << std::endl;
@@ -373,7 +373,7 @@ void testVirtualDestructorWithBrain() {
 		Animal* animal = new Dog();
 		animal->makeSound();
 		std::cout << "\n削除時: virtualデストラクタによりDog→Animalの順で適切に呼ばれ、Brainも解放されます" << std::endl;
-		delete animal;  // Dog destructor → Animal destructor (Brain properly deleted)
+		delete animal;  // Dog destructor -> Animal destructor (Brain properly deleted)
 	}
 
 	std::cout << "\n⚠️ もしvirtualデストラクタがなかった場合:" << std::endl;
@@ -438,15 +438,15 @@ void testPolymorphismUseCases() {
 
 	std::cout << "\n----- 実用的なユースケース -----" << std::endl;
 	std::cout << "1. ペットショップ管理システム:" << std::endl;
-	std::cout << "   Animal* petShop[100]; // 様々な動物を統一管理" << std::endl;
+	std::cout << "   Animal* petShop[100]; // Unified management of various animals" << std::endl;
 	std::cout << "   for (int i = 0; i < petCount; i++) {" << std::endl;
-	std::cout << "       petShop[i]->makeSound(); // 各動物固有の鳴き声" << std::endl;
+	std::cout << "       petShop[i]->makeSound(); // Each animal's unique sound" << std::endl;
 	std::cout << "   }" << std::endl;
 
 	std::cout << "\n2. ゲーム開発:" << std::endl;
-	std::cout << "   Animal* enemies[50]; // 様々な敵キャラクター" << std::endl;
+	std::cout << "   Animal* enemies[50]; // Various enemy characters" << std::endl;
 	std::cout << "   for (int i = 0; i < enemyCount; i++) {" << std::endl;
-	std::cout << "       enemies[i]->makeSound(); // 各敵固有の音" << std::endl;
+	std::cout << "       enemies[i]->makeSound(); // Each enemy's unique sound" << std::endl;
 	std::cout << "   }" << std::endl;
 
 	std::cout << "\n✅ ex02多態性の効果:" << std::endl;
