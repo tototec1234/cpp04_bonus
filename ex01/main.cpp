@@ -6,13 +6,14 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 14:49:16 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 16:26:34 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "AnsiColor.hpp"
 #include <limits>
 
 void testBasicFunctionality();
@@ -26,7 +27,7 @@ int main() {
 	bool running = true;
 
 	while (running) {
-		std::cout << "\n=== CPP04 Exercise 01 Test Menu ===" << std::endl;
+		std::cout <<  YELLOW_COLOR << "\n=== CPP04 Exercise 01 Test Menu ===" << RESET_COLOR << std::endl;
 		std::cout << "=== CPP04 演習01 テストメニュー ===" << std::endl;
 		std::cout << "1: Basic Animal Array Functionality Test                    基本的な動物配列機能テスト" << std::endl;
 		std::cout << "2: Deep Copy Test                                          ディープコピーテスト" << std::endl;
@@ -77,7 +78,7 @@ int main() {
 }
 
 void testBasicFunctionality() {
-	std::cout << "\033[32m=== Testing Basic Animal Array Functionality ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 1: Testing Basic Animal Array Functionality ===\033[0m" << std::endl;
 
 	const int ARRAY_SIZE = 4;
 	Animal* animals[ARRAY_SIZE];
@@ -133,13 +134,16 @@ void testBasicFunctionality() {
 }
 
 void testDeepCopy() {
-	std::cout << "\033[32m=== Testing Deep Copy (Copy Constructor) ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 2: Testing Deep Copy (Copy Constructor) ===\033[0m" << std::endl;
 
 	std::cout << "\n----- Testing Dog Deep Copy -----" << std::endl;
 	{
 		Dog originalDog;
+		std::cout << BOLD_GREEN_COLOR << "Executing: originalDog.getBrain()->setIdea(0, \"Chase squirrels\");" << RESET_COLOR << std::endl;
 		originalDog.getBrain()->setIdea(0, "Chase squirrels");
+		std::cout << BOLD_GREEN_COLOR << "Executing: originalDog.getBrain()->setIdea(1, \"Protect house\");" << RESET_COLOR << std::endl;
 		originalDog.getBrain()->setIdea(1, "Protect house");
+		std::cout << BOLD_GREEN_COLOR << "Executing: originalDog.getBrain()->setIdea(2, \"Bark at mailman\");" << RESET_COLOR << std::endl;
 		originalDog.getBrain()->setIdea(2, "Bark at mailman");
 
 		std::cout << "\nOriginal dog's brain address: " << originalDog.getBrain() << std::endl;
@@ -147,6 +151,7 @@ void testDeepCopy() {
 		originalDog.getBrain()->printIdeas();
 
 		std::cout << "\n--- Creating copy using copy constructor ---" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: Dog copiedDog = originalDog;" << RESET_COLOR << std::endl;
 		Dog copiedDog = originalDog;  // Copy constructor
 
 		std::cout << "\nCopied dog's brain address: " << copiedDog.getBrain() << std::endl;
@@ -154,7 +159,9 @@ void testDeepCopy() {
 		copiedDog.getBrain()->printIdeas();
 
 		std::cout << "\n--- Verifying deep copy by modifying original ---" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: originalDog.getBrain()->setIdea(0, \"Sleep all day\");" << RESET_COLOR << std::endl;
 		originalDog.getBrain()->setIdea(0, "Sleep all day");
+		std::cout << BOLD_GREEN_COLOR << "Executing: originalDog.getBrain()->setIdea(3, \"Dream about food\");" << RESET_COLOR << std::endl;
 		originalDog.getBrain()->setIdea(3, "Dream about food");
 
 		std::cout << "\nAfter modifying original:" << std::endl;
@@ -170,18 +177,22 @@ void testDeepCopy() {
 	std::cout << "\n----- Testing Cat Deep Copy -----" << std::endl;
 	{
 		Cat originalCat;
+		std::cout << BOLD_GREEN_COLOR << "Executing: originalCat.getBrain()->setIdea(0, \"Hunt mice\");" << RESET_COLOR << std::endl;
 		originalCat.getBrain()->setIdea(0, "Hunt mice");
+		std::cout << BOLD_GREEN_COLOR << "Executing: originalCat.getBrain()->setIdea(1, \"Nap in sunlight\");" << RESET_COLOR << std::endl;
 		originalCat.getBrain()->setIdea(1, "Nap in sunlight");
 
 		std::cout << "\nOriginal cat's brain address: " << originalCat.getBrain() << std::endl;
 		std::cout << "Original cat ideas:" << std::endl;
 		originalCat.getBrain()->printIdeas();
 
+		std::cout << BOLD_GREEN_COLOR << "Executing: Cat copiedCat = originalCat;" << RESET_COLOR << std::endl;
 		Cat copiedCat = originalCat;  // Copy constructor
 
 		std::cout << "\nCopied cat's brain address: " << copiedCat.getBrain() << std::endl;
 
 		// Modify original to prove deep copy
+		std::cout << BOLD_GREEN_COLOR << "Executing: originalCat.getBrain()->setIdea(0, \"Knock things off table\");" << RESET_COLOR << std::endl;
 		originalCat.getBrain()->setIdea(0, "Knock things off table");
 
 		std::cout << "\nAfter modifying original cat:" << std::endl;
@@ -194,16 +205,19 @@ void testDeepCopy() {
 }
 
 void testAssignmentOperator() {
-	std::cout << "\033[32m=== Testing Deep Copy (Assignment Operator) ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 3: Testing Deep Copy (Assignment Operator) ===\033[0m" << std::endl;
 
 	std::cout << "\n----- Testing Dog Assignment Operator -----" << std::endl;
 	{
 		Dog dog1;
 		Dog dog2;
 
+		std::cout << BOLD_GREEN_COLOR << "Executing: dog1.getBrain()->setIdea(0, \"Original dog idea\");" << RESET_COLOR << std::endl;
 		dog1.getBrain()->setIdea(0, "Original dog idea");
+		std::cout << BOLD_GREEN_COLOR << "Executing: dog1.getBrain()->setIdea(1, \"Another original idea\");" << RESET_COLOR << std::endl;
 		dog1.getBrain()->setIdea(1, "Another original idea");
 
+		std::cout << BOLD_GREEN_COLOR << "Executing: dog2.getBrain()->setIdea(0, \"Different dog idea\");" << RESET_COLOR << std::endl;
 		dog2.getBrain()->setIdea(0, "Different dog idea");
 
 		std::cout << "\nBefore assignment:" << std::endl;
@@ -216,6 +230,7 @@ void testAssignmentOperator() {
 		dog2.getBrain()->printIdeas();
 
 		std::cout << "\n--- Performing assignment (dog2 = dog1) ---" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: dog2 = dog1;" << RESET_COLOR << std::endl;
 		dog2 = dog1;  // Assignment operator
 
 		std::cout << "\nAfter assignment:" << std::endl;
@@ -225,6 +240,7 @@ void testAssignmentOperator() {
 		dog2.getBrain()->printIdeas();
 
 		std::cout << "\n--- Verifying independent modification ---" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: dog1.getBrain()->setIdea(0, \"Modified after assignment\");" << RESET_COLOR << std::endl;
 		dog1.getBrain()->setIdea(0, "Modified after assignment");
 
 		std::cout << "\nAfter modifying dog1:" << std::endl;
@@ -242,9 +258,12 @@ void testAssignmentOperator() {
 		Cat cat1;
 		Cat cat2;
 
+		std::cout << BOLD_GREEN_COLOR << "Executing: cat1.getBrain()->setIdea(0, \"Original cat idea\");" << RESET_COLOR << std::endl;
 		cat1.getBrain()->setIdea(0, "Original cat idea");
+		std::cout << BOLD_GREEN_COLOR << "Executing: cat1.getBrain()->setIdea(1, \"Sleep in sunny spot\");" << RESET_COLOR << std::endl;
 		cat1.getBrain()->setIdea(1, "Sleep in sunny spot");
 
+		std::cout << BOLD_GREEN_COLOR << "Executing: cat2.getBrain()->setIdea(0, \"Different cat idea\");" << RESET_COLOR << std::endl;
 		cat2.getBrain()->setIdea(0, "Different cat idea");
 
 		std::cout << "\nBefore assignment:" << std::endl;
@@ -257,6 +276,7 @@ void testAssignmentOperator() {
 		cat2.getBrain()->printIdeas();
 
 		std::cout << "\n--- Performing assignment (cat2 = cat1) ---" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: cat2 = cat1;" << RESET_COLOR << std::endl;
 		cat2 = cat1;  // Assignment operator
 
 		std::cout << "\nAfter assignment:" << std::endl;
@@ -266,6 +286,7 @@ void testAssignmentOperator() {
 		cat2.getBrain()->printIdeas();
 
 		std::cout << "\n--- Verifying independent modification ---" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: cat1.getBrain()->setIdea(0, \"Modified cat thought\");" << RESET_COLOR << std::endl;
 		cat1.getBrain()->setIdea(0, "Modified cat thought");
 
 		std::cout << "\nAfter modifying cat1:" << std::endl;
@@ -280,12 +301,14 @@ void testAssignmentOperator() {
 }
 
 void testVirtualDestructorWithBrain() {
-	std::cout << "\033[32m=== Demonstrating Virtual Destructor Importance with Brain ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 4: Demonstrating Virtual Destructor Importance with Brain ===\033[0m" << std::endl;
 	std::cout << "注意: この例では、virtual destructorがなかった場合のメモリリークリスクを説明します" << std::endl;
 
 	std::cout << "\n----- Correct usage with virtual destructor -----" << std::endl;
 	{
+		std::cout << BOLD_GREEN_COLOR << "Executing: Animal* animal = new Dog();" << RESET_COLOR << std::endl;
 		Animal* animal = new Dog();
+		std::cout << BOLD_GREEN_COLOR << "Executing: animal->makeSound();" << RESET_COLOR << std::endl;
 		animal->makeSound();
 		std::cout << "\n削除時: virtualデストラクタによりDog→Animalの順で適切に呼ばれ、Brainも解放されます" << std::endl;
 		delete animal;  // Dog destructor → Animal destructor (Brain properly deleted)
@@ -304,16 +327,19 @@ void testVirtualDestructorWithBrain() {
 }
 
 void testExceptionHandling() {
-	std::cout << "\033[32m=== Testing Exception Handling (CPP04 Enhancement) ===\033[0m" << std::endl;
+	std::cout << "\033[32m=== 5: Testing Exception Handling (CPP04 Enhancement) ===\033[0m" << std::endl;
 
 	std::cout << "\n----- Testing Brain Array Bounds Checking -----" << std::endl;
 	try {
 		Dog dog;
 		std::cout << "✅ Setting valid idea at index 0:" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: dog.getBrain()->setIdea(0, \"Valid idea\");" << RESET_COLOR << std::endl;
 		dog.getBrain()->setIdea(0, "Valid idea");
+		std::cout << BOLD_GREEN_COLOR << "Executing: dog.getBrain()->getIdea(0);" << RESET_COLOR << std::endl;
 		std::cout << "Retrieved idea: \"" << dog.getBrain()->getIdea(0) << "\"" << std::endl;
 
 		std::cout << "\n⚠️ Attempting to set idea at invalid index 100:" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: dog.getBrain()->setIdea(100, \"Invalid index idea\");" << RESET_COLOR << std::endl;
 		dog.getBrain()->setIdea(100, "Invalid index idea");
 	} catch (const std::out_of_range &e) {
 		std::cout << "✅ Exception caught: " << e.what() << std::endl;
@@ -322,6 +348,7 @@ void testExceptionHandling() {
 	try {
 		Dog dog;
 		std::cout << "\n⚠️ Attempting to get idea at invalid index -1:" << std::endl;
+		std::cout << BOLD_GREEN_COLOR << "Executing: dog.getBrain()->getIdea(-1);" << RESET_COLOR << std::endl;
 		std::string idea = dog.getBrain()->getIdea(-1);
 	} catch (const std::out_of_range &e) {
 		std::cout << "✅ Exception caught: " << e.what() << std::endl;
@@ -330,12 +357,15 @@ void testExceptionHandling() {
 	std::cout << "\n----- Testing Exception Safety in Assignment Operator -----" << std::endl;
 	try {
 		Cat cat1, cat2;
+		std::cout << BOLD_GREEN_COLOR << "Executing: cat1.getBrain()->setIdea(0, \"Original cat idea\");" << RESET_COLOR << std::endl;
 		cat1.getBrain()->setIdea(0, "Original cat idea");
+		std::cout << BOLD_GREEN_COLOR << "Executing: cat1.getBrain()->setIdea(1, \"Another idea\");" << RESET_COLOR << std::endl;
 		cat1.getBrain()->setIdea(1, "Another idea");
 
 		std::cout << "Cat1 brain address before assignment: " << cat1.getBrain() << std::endl;
 		std::cout << "Cat2 brain address before assignment: " << cat2.getBrain() << std::endl;
 
+		std::cout << BOLD_GREEN_COLOR << "Executing: cat2 = cat1;  // This should be exception-safe now" << RESET_COLOR << std::endl;
 		cat2 = cat1;  // This should be exception-safe now
 
 		std::cout << "✅ Assignment completed successfully" << std::endl;
