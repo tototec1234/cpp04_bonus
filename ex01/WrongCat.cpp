@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 18:22:25 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 18:36:50 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ WrongCat &WrongCat::operator=(const WrongCat &other) {
 	std::cout << MAGENTA_COLOR << "WrongCat assignment operator called    this: " << this << RESET_COLOR << std::endl;
 	if (this != &other) {
 		WrongAnimal::operator=(other);
-		// 🔴 例外非安全: 古いbrainを先に削除（Catクラスとは異なる「悪い実装例」）
-		delete this->brain;  // 先に削除
-		this->brain = new WrongBrain(*other.brain);  // これが失敗したらbrain=nullptrに！
+		// 🔴 Exception-unsafe: Delete old brain first (bad implementation example different from Cat class)
+		delete this->brain;  // Delete first
+		this->brain = new WrongBrain(*other.brain);  // If this fails, brain=nullptr!
 	}
 	return *this;
 }

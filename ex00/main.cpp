@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 14:43:32 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 18:36:50 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void testPolymorphicInstantiationProblems() {
 	const WrongAnimal* wrongCat = nullptr;
 
 	try {
-		// 多態的インスタンス化の試み（基底クラスポインタ使用）
+		// Attempt at polymorphic instantiation (using base class pointer)
 		wrongCat = new WrongCat();
 		std::cout << std::endl;
 
@@ -157,7 +157,7 @@ void testInheritanceBasedInstantiation() {
 	const WrongCat* wrongCat = nullptr;
 
 	try {
-		// 継承的インスタンス化（具象型ポインタ使用）
+		// Inheritance-based instantiation (using concrete type pointer)
 		wrongCat = new WrongCat();
 		std::cout << std::endl;
 

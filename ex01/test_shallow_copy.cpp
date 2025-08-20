@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:20:58 by toruinoue         #+#    #+#             */
-/*   Updated: 2025/08/20 18:21:03 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 18:36:50 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void testShallowCopyProblem() {
 		std::cout << "\n🚨 この後、スコープを出るときにdouble deleteが発生する可能性があります..." << std::endl;
 		std::cout << "dog1とdog2の両方が同じbrainポインタを削除しようとします！" << std::endl;
 	}
-	// ここでdog1とdog2が破棄される際、同じbrainを2回deleteしようとして
-	// double deleteエラーが発生する可能性があります
+	// When dog1 and dog2 are destroyed here, they try to delete the same brain twice
+	// There is a possibility of double delete error
 
 	std::cout << "\n📚 学習ポイント:" << std::endl;
 	std::cout << "・浅いコピーでは複数オブジェクトが同じリソースを共有" << std::endl;

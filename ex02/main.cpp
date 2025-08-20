@@ -6,16 +6,16 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/20 14:51:15 by toruinoue        ###   ########.fr       */
+/*   Updated: 2025/08/20 18:36:50 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // CPP04 Exercise 02: Abstract class
-// ex01との主な違い: Animalクラスを抽象クラス化
-// 1. Animal::makeSound()を純粋仮想関数 (= 0) に変更
-// 2. Animalオブジェクトの直接インスタンス化が不可能に
-// 3. Dog/Catは引き続き正常に動作（makeSound()を実装済みのため）
-// 4. 多態性は維持（Animal*としてDog/Catを扱い可能）
+// Main differences from ex01: Make Animal class abstract
+// 1. Change Animal::makeSound() to pure virtual function (= 0)
+// 2. Direct instantiation of Animal objects becomes impossible
+// 3. Dog/Cat continue to work normally (since makeSound() is already implemented)
+// 4. Polymorphism is maintained (can handle Dog/Cat as Animal*)
 
 #include "Animal.hpp"
 #include "Dog.hpp"
@@ -315,15 +315,15 @@ void testAbstractClass() {
 	std::cout << "  // Animal animal;          // Error: cannot instantiate abstract class" << std::endl;
 	std::cout << "  // Animal* ptr = new Animal(); // Error: cannot instantiate abstract class" << std::endl;
 
-	// ex02: 以下のコードはコンパイルエラーになるため、コメントアウト必須
-	// 学習用デモンストレーション - 実際は使用不可
+	// ex02: The following code will cause compile errors, so commenting out is mandatory
+	// Learning demonstration - not actually usable
 	/*
-	// これらのコメントアウトを外すとコンパイル時にエラーが発生する:
+	// Uncommenting these will cause compile-time errors:
 	// error: variable type 'Animal' is an abstract class
 	// error: allocating an object of abstract class type 'Animal'
 
-	Animal animal;                    // エラー: 抽象クラスはインスタンス化できない
-	Animal* animalPtr = new Animal(); // エラー: 抽象クラスはnewできない
+	Animal animal;                    // Error: abstract classes cannot be instantiated
+	Animal* animalPtr = new Animal(); // Error: abstract classes cannot be created with new
 	delete animalPtr;
 	*/
 
@@ -387,7 +387,7 @@ void testVirtualDestructorWithBrain() {
 	std::cout << "・リソース管理: new/deleteのペア、RAII原則" << std::endl;
 }
 
-// シンプルな多態性デモ関数
+// Simple polymorphism demo function
 void demonstratePolymorphism(Animal* animal) {
 	std::cout << "Animal*ポインタ -> 実際は" << animal->getType() << ": ";
 	animal->makeSound();
@@ -400,11 +400,11 @@ void testPolymorphismUseCases() {
 	std::cout << "\n----- 多態性の基本概念 -----" << std::endl;
 	std::cout << "Animal*型ポインタが様々な実体を指す例:\n" << std::endl;
 
-	// 同じ型（Animal*）で異なる実体を指す
+	// Same type (Animal*) pointing to different entities
 	Animal* animal1 = new Dog();
 	Animal* animal2 = new Cat();
 
-	// 統一的な処理で各々の動作
+	// Unified processing for each behavior
 	demonstratePolymorphism(animal1);
 	demonstratePolymorphism(animal2);
 
@@ -429,7 +429,7 @@ void testPolymorphismUseCases() {
 	std::cout << "    demonstratePolymorphism(zoo[i]);" << std::endl;
 	std::cout << "}" << std::endl;
 	std::cout << "\n実行結果:" << std::endl; 
-	// 同じコードで全動物を処理
+	// Process all animals with the same code
 	for (int i = 0; i < 3; i++) {
 		std::cout << "zoo[" << i << "]: ";
 		demonstratePolymorphism(zoo[i]);
