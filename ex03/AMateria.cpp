@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/10 02:30:22 by toruinoue        ###   ########.fr       */
+/*   Updated: 2026/01/10 02:50:14 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#include "AMateria.hpp"
+#include "AnsiColor.hpp"
 
 #include <iostream>
-#include <string>
 
-class ICharacter;
+#include "ICharacter.hpp"
 
-class AMateria
-{
-	protected:
-		std::string _type;
+AMateria::AMateria(std::string const & type) : _type(type){
+	std::cout << MAGENTA_COLOR << "Animal parameterized constructor called this: " << this << RESET_COLOR << std::endl;
+}
 
-	public:
-		AMateria(std::string const & type);
 		// AMateria(const AMateria & other);
 		// AMateria &operator=(const AMateria & other);
-		virtual ~AMateria();
-	
-		std::string const & getType() const; //Returns the materia type
-	
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target);
-};
 
-#endif
+AMateria::~AMateria(){
+	std::cout << MAGENTA_COLOR << "Animal destructor called                this: " << this << RESET_COLOR << std::endl;
+}
+	
+std::string const & AMateria::getType() const {}; //Returns the materia type
+	
+// virtual AMateria* clone() const = 0;
+
+void AMateria::use(ICharacter& target) {
+	(void)target;
+}

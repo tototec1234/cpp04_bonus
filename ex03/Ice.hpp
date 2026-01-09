@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/10 02:30:22 by toruinoue        ###   ########.fr       */
+/*   Updated: 2026/01/10 02:17:04 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef ICE_HPP
+#define ICE_HPP
+
+#include "AMateria.hpp"
 
 #include <iostream>
 #include <string>
 
 class ICharacter;
 
-class AMateria
+class Ice : public AMateria
 {
-	protected:
-		std::string _type;
+	// protected:
+	// 	std::string _type;
 
 	public:
-		AMateria(std::string const & type);
-		// AMateria(const AMateria & other);
-		// AMateria &operator=(const AMateria & other);
+	
+		Ice(Ice const & other);
+		Ice(const AMateria & other);
+		Ice&operator=(const AMateria & other);
 		virtual ~AMateria();
 	
 		std::string const & getType() const; //Returns the materia type
