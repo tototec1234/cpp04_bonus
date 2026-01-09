@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torinoue <torinoue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/21 02:42:47 by torinoue         ###   ########.fr       */
+/*   Updated: 2026/01/10 07:00:02 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ protected:
 	std::string type;
 
 public:
-	Animal();
+	// Animal();
 	Animal(const std::string &animalType);
 	Animal(const Animal &other);
 	Animal &operator=(const Animal &other);

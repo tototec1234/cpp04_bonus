@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torinoue <torinoue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2025/08/21 02:42:44 by torinoue         ###   ########.fr       */
+/*   Updated: 2026/01/10 07:00:00 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "AnsiColor.hpp"
 
-Animal::Animal() : type("Animal") {
-	std::cout << MAGENTA_COLOR << "Animal default constructor called        this: " << this << RESET_COLOR << std::endl;
-}
+// Animal::Animal() : type("Animal") {
+// 	std::cout << MAGENTA_COLOR << "Animal default constructor called        this: " << this << RESET_COLOR << std::endl;
+// }
 
 Animal::Animal(const std::string &animalType) : type(animalType) {
 	std::cout << MAGENTA_COLOR << "Animal parameterized constructor called this: " << this << RESET_COLOR << std::endl;
