@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:06 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/10 07:00:00 by toruinoue        ###   ########.fr       */
+/*   Updated: 2026/01/10 13:08:01 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ Animal &Animal::operator=(const Animal &other) {
 Animal::~Animal() {
 	std::cout << MAGENTA_COLOR << "Animal destructor called                this: " << this << RESET_COLOR << std::endl;
 }
+
+// Simple note for learners:
+// Even if 'makeSound()' is declared as pure virtual (written '= 0' in the header),
+// we can still write its code in this .cpp file.
+// But the class stays abstract, so we cannot make an object of 'Animal'.
+
+/*
+void Animal::makeSound() const
+{
+	std::cout << BLUE_COLOR << "Animal makes a generic sound" << RESET_COLOR << std::endl;
+}
+*/
 
 std::string Animal::getType() const {
 	return this->type;
