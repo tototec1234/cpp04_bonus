@@ -6,17 +6,15 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/10 06:34:57 by toruinoue        ###   ########.fr       */
+/*   Updated: 2026/01/12 12:56:49 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ICE_HPP
 #define ICE_HPP
 
-
-
-
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 class Ice : public AMateria
 {
@@ -32,7 +30,7 @@ class Ice : public AMateria
 	
 		// std::string const & getType() const; //Returns the materia type
 	
-		AMateria* clone() const // = 0;
+		AMateria* clone() const; // = 0;
 		void use(ICharacter& target);
 };
 

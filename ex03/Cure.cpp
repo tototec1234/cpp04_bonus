@@ -19,15 +19,15 @@
 
 
 Cure::Cure() : AMateria("cure") {
-	std::cout << YELLOW_COLOR << "Cure default constructor called           this: " << this << RESET_COLOR << std::endl;
+	std::cerr << YELLOW_COLOR << "Cure default constructor called           this: " << this << RESET_COLOR << std::endl;
 }
 
 Cure::Cure(const Cure &other) : AMateria(other) {
-	std::cout << YELLOW_COLOR << "Cure copy constructor called              this: " << this << RESET_COLOR << std::endl;
+	std::cerr << YELLOW_COLOR << "Cure copy constructor called              this: " << this << RESET_COLOR << std::endl;
 }
 
 Cure &Cure::operator=(const Cure &other) {
-	std::cout << YELLOW_COLOR << "Cure assignment operator called          this: " << this << RESET_COLOR << std::endl;
+	std::cerr << YELLOW_COLOR << "Cure assignment operator called          this: " << this << RESET_COLOR << std::endl;
 	if (this != &other) {
 		AMateria::operator=(other);
 	}
@@ -35,7 +35,7 @@ Cure &Cure::operator=(const Cure &other) {
 }
 
 Cure::~Cure() {
-	std::cout << YELLOW_COLOR << "Cure destructor called                   this: " << this << RESET_COLOR << std::endl;
+	std::cerr << YELLOW_COLOR << "Cure destructor called                   this: " << this << RESET_COLOR << std::endl;
 }
 
 AMateria* Cure::clone() const {
