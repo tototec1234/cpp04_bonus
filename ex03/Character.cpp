@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/12 11:13:19 by toruinoue        ###   ########.fr       */
+/*   Updated: 2026/01/12 12:20:51 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-#define CHARACTER_HPP
+#include "../incs/Character.hpp"
 
-#include <string>
-#include <utility>
-
-#include "ICharacter.hpp"
+#include "../incs/AMateria.hpp"
 
 class AMateria;
 
+Character::Character() : _name("") {
+  for (int i = 0; i < 4; ++i) _inventory[i] = NULL;
+}
 
-class Character : public ICharacter
-{
-	public:
-		Character();
 		Character(std::string const & name);
 		Character(Character const & other);
 		Character& operator=(Character const & other);

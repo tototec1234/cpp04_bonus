@@ -1,6 +1,6 @@
 NAME = brain_test
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS = 	main.cpp \
 	test_basic.cpp \

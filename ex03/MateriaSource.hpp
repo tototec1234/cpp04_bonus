@@ -1,45 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/12 11:13:19 by toruinoue        ###   ########.fr       */
+/*   Updated: 2026/01/12 11:22:36 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-#define CHARACTER_HPP
+#ifndef MATERIASOURCE_HPP
+#define MATERIASOURCE_HPP
 
 #include <string>
-#include <utility>
-
-#include "ICharacter.hpp"
 
 class AMateria;
 
-
-class Character : public ICharacter
+class MateriaSource : public IMateriaSource
 {
 	public:
-		Character();
-		Character(std::string const & name);
-		Character(Character const & other);
-		Character& operator=(Character const & other);
-		~Character();
+		MateriaSource();
+		MateriaSource(MateriaSource const & other);
+		MateriaSource& operator=(MateriaSource const & other);
+		~MateriaSource();
 
-		std::string const & getName() const;
-		AMateria* getMateria(int idx) const;
-
-		virtual void equip(AMateria* m);
-		virtual void unequip(int idx);
-		virtual void use(int idx, ICharacter& target);
+		void learnMateria(AMateria* m);
+		AMateria* createMateria(std::string const & type);
 
 	private:
-		std::string _name;
-		AMateria* _inventory[4];
+		AMateria* _materias[4];
 };
-
 #endif
