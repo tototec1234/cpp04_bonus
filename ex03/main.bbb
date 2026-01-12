@@ -7,13 +7,7 @@
 #include "IMateriaSource.hpp"
 #include "Ice.hpp"
 #include "MateriaSource.hpp"
-// #include "../incs/AMateria.hpp"
-// #include "../incs/Character.hpp"
-// #include "../incs/Cure.hpp"
-// #include "../incs/ICharacter.hpp"
-// #include "../incs/IMateriaSource.hpp"
-// #include "../incs/Ice.hpp"
-// #include "../incs/MateriaSource.hpp"
+// #
 int main() {
   {
     std::cout << "\033[33m=== Test: subject test case ===\033[0m" << std::endl;
