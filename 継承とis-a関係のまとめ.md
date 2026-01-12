@@ -5,9 +5,9 @@
 **C++ - Module 04: Subtype Polymorphism, Abstract Classes, and Interfaces**
 
 このモジュールでは、以下の概念を学習します：
-- **多態性（Polymorphism）**: 基底クラスのポインタ/参照で派生クラスを扱う
-- **抽象クラス（Abstract Classes）**: 直接インスタンス化できない基底クラス
-- **インターフェース（Interfaces）**: 純粋抽象クラスによる契約の定義
+- **多態性（Polymorphism）**		: 基底クラスのポインタ/参照で派生クラスを扱う
+- **抽象クラス（Abstract Classes）**	: 直接インスタンス化できない基底クラス
+- **インターフェース（Interfaces）**	: 純粋抽象クラスによる契約の定義
 
 ---
 
