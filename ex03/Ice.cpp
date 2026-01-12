@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:48:18 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/10 07:28:35 by toruinoue        ###   ########.fr       */
+/*   Updated: 2026/01/12 13:10:24 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "AnsiColor.hpp"
 
 
-Ice::Ice() : AMateria("Ice") {
+Ice::Ice() : AMateria("ice") {
 	std::cout << YELLOW_COLOR << "Ice default constructor called           this: " << this << RESET_COLOR << std::endl;
 }
 

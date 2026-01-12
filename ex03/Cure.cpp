@@ -18,7 +18,7 @@
 #include "AnsiColor.hpp"
 
 
-Cure::Cure() : AMateria("Cure") {
+Cure::Cure() : AMateria("cure") {
 	std::cout << YELLOW_COLOR << "Cure default constructor called           this: " << this << RESET_COLOR << std::endl;
 }
 
